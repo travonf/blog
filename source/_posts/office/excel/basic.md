@@ -1,7 +1,9 @@
 ---
 title: EXCEL在财务管理中的高级应用
 date: 2010-06-01 20:10:40
+updated: 2010-06-01 20:10:40
 tags: "excel"
+categories: "Office"
 ---
 
 高顿财务培训《EXCEL在财务管理中的高级应用》

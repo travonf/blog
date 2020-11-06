@@ -1,7 +1,9 @@
 ---
 title: MarkDown使用说明
 date: 2010-06-01 20:10:40
+updated: 2010-06-01 20:10:40
 tags: "markdown"
+categories: "Develop"
 ---
 
 # 基本技巧

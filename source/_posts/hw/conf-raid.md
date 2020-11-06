@@ -1,7 +1,9 @@
 ---
 title: 如何通过命令行配置RAID?
 date: 2018-12-05 23:15:46
+updated: 2018-12-05 23:15:46
 tags: "RAID"
+categories: "Hardware"
 ---
 
 # 概述

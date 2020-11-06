@@ -1,7 +1,9 @@
 ---
 title: JavaScript基础
 date: 2018-12-05 23:15:46
+updated: 2018-12-05 23:15:46
 tags: "javascript"
+categories: "Develop"
 ---
 
 window.innerHeight 	表示窗口高度

@@ -1,7 +1,9 @@
 ---
 title: 实际操作帮助理解Linux下的软硬链接
 date: 2010-06-01 20:10:40
+updated: 2010-06-01 20:10:40
 tags: "linux"
+categories: "OS"
 ---
 
 Linux链接分两种，一种被称为硬链接用ln生成，另一种被称为软链接用ln -s生成

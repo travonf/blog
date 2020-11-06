@@ -1,7 +1,9 @@
 ---
 title: Python基础
 date: 2013/02/14 11:11:11
+updated: 2013/02/14 11:11:11
 tags: "Python"
+categories: "Develop"
 ---
 
 # Python
@@ -408,7 +410,7 @@ filter(odd, L1)
 
 ### map
 
-<img src="./img/map.png" alt="map" title="map"/>
+![map](/blog/images/map.png)
 
 ### reduce
 ``` javascript

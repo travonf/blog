@@ -1,7 +1,9 @@
 ---
 title: 谈话的力量
 date: 2010-06-01 20:10:40
+updated: 2010-06-01 20:10:40
 tags: "book"
+categories: "Read"
 ---
 
 ## 学会提问题

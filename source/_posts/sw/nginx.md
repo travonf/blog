@@ -1,7 +1,9 @@
 ---
 title: BAT都在用的Nginx到底是啥？
 date: 2013/02/14 11:11:11
+updated: 2013/02/14 11:11:11
 tags: "nginx"
+categories: "Software"
 ---
 
 如果你混迹IT圈儿，你可能听说过，或见过Nginx，IT技术人员对她都会有所耳闻，云计算工程师因为要应对负载均衡问题，需要更深入的了解Nginx，而Nginx也是百度、阿里、腾讯等企业IT架构中的常客。今天，笔者就与大家一起来探究一下，Nginx究竟是什么。

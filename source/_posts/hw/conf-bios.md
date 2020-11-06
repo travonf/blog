@@ -1,7 +1,9 @@
 ---
 title: 如何通过命令行配置BIOS?
 date: 2018-11-06 20:56:34
+updated: 2018-11-06 20:56:34
 tags: "BIOS"
+categories: "Hardware"
 ---
 # 概述
 > 目前全球只有四家独立BIOS供应商，  

@@ -1,7 +1,9 @@
 ---
 title: TCP/IP协议——ARP详解
 date: 2010-06-01 20:10:40
+updated: 2010-06-01 20:10:40
 tags: "arp"
+categories: "Network"
 ---
 
 本文主要讲述了ARP的作用、ARP分组格式、ARP高速缓存、免费ARP和代理ARP。
