@@ -12,6 +12,8 @@ categories: "Develop"
 另外我现在会尽量用 ts 来写，这样不用为了查找 API 翻来翻去了；
 话不多说，我们进入正题，如有错误，欢迎指正：
 
+<!--more-->
+
 # 布局
 
 umijs 集成了 pro-layout 组件，只需要在配置里开启即可，但是有几个点需要注意：
@@ -98,13 +100,16 @@ export const layout: ILayout = {
   // 菜单下方放置超链接
   links: [
     <a href="https://www.aliyun.com/" target="_blank" rel="noopener noreferrer">
-      <AliyunOutlined /> <span>阿里云</span>
+      <AliyunOutlined />
+       <span>阿里云</span>
     </a>,
     <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
-      <GithubOutlined /> <span>Github</span>
+      <GithubOutlined />
+       <span>Github</span>
     </a>,
     <a href="https://codesandbox.io/" target="_blank" rel="noopener noreferrer">
-      <CodeSandboxOutlined /> <span>CodeSandbox</span>
+      <CodeSandboxOutlined />
+       <span>CodeSandbox</span>
     </a>,
   ],
 
