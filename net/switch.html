@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="无论你是否从事网络工作，你一定听过网络接入层、汇聚层、核心层，二层交换、三层交换、四层交换，这些“层”说的到底是什么？今天带您走进交换机“层”的世界。 首先，我们先说说这交换机为什么分这么多层，各层的交换机到底有什么区别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="走进交换机“层”的世界">
+<meta property="og:url" content="https://travonf.github.io/blog/net/switch.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="无论你是否从事网络工作，你一定听过网络接入层、汇聚层、核心层，二层交换、三层交换、四层交换，这些“层”说的到底是什么？今天带您走进交换机“层”的世界。 首先，我们先说说这交换机为什么分这么多层，各层的交换机到底有什么区别。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:modified_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="net">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/net/switch.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>走进交换机“层”的世界 | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/net/switch.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          走进交换机“层”的世界
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>无论你是否从事网络工作，你一定听过网络接入层、汇聚层、核心层，二层交换、三层交换、四层交换，这些“层”说的到底是什么？今天带您走进交换机“层”的世界。</p>
+<p>首先，我们先说说这交换机为什么分这么多层，各层的交换机到底有什么区别。</p>
+<a id="more"></a>
+
+<p>从协议上看</p>
+<p>所谓的一层、二层、三层、四层其实是按OSI协议划分的（关于OSI网络协议的内容有兴趣可以看我之前的文章《看江湖老炮用尽洪荒之力解读网络协议》）</p>
+<p>一层交换机：只支持物理层协议（电话程控交换机算吧，其它我也没见过）</p>
+<p>二层交换机：支持物理层和数据链路层协议</p>
+<p>三层交换机：支持物理层、数据链路层、网络层协议（带路由功能的）</p>
+<p>四层交换机：支持物理层、数据链路层、网络层、传输层协议。</p>
+<p>从工作原理</p>
+<p>看交换机技术原理度娘说的比我清楚，我理解中其实它就是一个快递工作。</p>
+<p>比如说A和B都在一个城市，A要给B发件货，把快递单和包裹都给了快递员，（快递单上有收件人发件人的信息，相当于原地址和目标地址），每个快递员（交换机）都有一份地址关系表，记录了的地址和收件人发件人对应关系，这地址表哪来的呢？学来的，只有在它负责的区域和它有联系的顾客它都有相关信息，（这就是交换机的“学习功能，它对每个接入端口的设备都能能识别设备的Mac地址，并在本地存储了一份Mac地址表，这个表包含了端口和接入设备的对应信息。）快递员根据地址表查询目的地址，通过对应端口送达包裹，如果所负责的区域内没有此目的地址，他联系同区域的其它快递员查询目的地址，直到将包裹送达到指定地址。但是，二层交换机在相当于同城快递，跨省快递的活只能交给路由器或三层交换机了。</p>
+<p>举个应用场景，便于大家理解。比如说A、B、C、D分别接在交换机的1、2、3、4口，A和B在一个VLAN，C和D在另一个VLAN，默认A和B可以通讯，C和D通讯，如果A和C要通讯，该怎么办。</p>
+<p>一般有两种方法：</p>
+<p>方法1、如果是二层交换机，需要通过路由器设置，做单臂路由解决不同vlan之前的通讯，二层交换解决不了不同VLAN的通讯需求，只能依靠路由器解决。</p>
+<p>方法二、通过三层交换机直接解决此需求。当然它的功能不仅仅如此，</p>
+<p>总的来说，二层交换机主要的功能体现在划分子网、限制广播、建立VLAN，但它的控制能力较小，灵活不够，缺乏路由功能。三层交换机因带有路由功能，可以建立跨省之前的关系，它相当于快递总部，不仅仅具备物流能力（二层交换机的能力），而且还有调度能力，通过它的调度选择最佳路径将货物以最快的方式跨省传递。当然，它也可以阻止跨省之间的传递，因为它有这个能力。</p>
+<p>二层和三层交换机都是基于端口地址的端到端的交换过程。而四层提供的服务又升级了。</p>
+<p>四层交换机最大的特点是提供VIP服务，也就是说它根据不同的应用协议分级，比如说在它的系统里会记录FTP是21端口，RDP 3389端口，它根据这些已订化的协议分级，目的就是为了提升服务质量（Qos),另外它还提供服务器负载均衡、统计信息等等功能。比如说，你快递一个重要物品，要求快递公司4小时到达、保价服务等等，这就属于规范协议内的VIP服务，你甚至可以查到此快递目前距离你的位置。这也就是四层提供的高级服务。</p>
+<p>从网络架构看</p>
+<p>了解了以上各层交换机的主要功能在说说接入层、汇聚层、核心层就比较好理解了。</p>
+<p>■ 核心层——提供最优的区间传输 （4层交机换，总部VIP服务部+业务部）</p>
+<p>■ 汇聚层——提供基于策略的连接 （3层交换机，总部调度部+业务部）</p>
+<p>■ 接入层——为多业务应用和其他的网络应用提供用户到网络的接入 ，和用户端直接联系。（2层交换机，基层快递业务部）</p>
+<p>从企业网络设计看，中小企业业有汇聚层+接入层即可，大的企业往往具备核心层、汇聚、接入3层架构，毕竟网络层次越高成本越高。</p>
+<p>从常见设备看</p>
+<p>Cisco:</p>
+<p>Cisco对产品的命名有一定之规。就Catalyst交换机来说，产品命名的格式如下： Catalyst NNXX [-C] [-M] [-A/-EN] 　　其中，NN是交换机的系列号，XX对于固定配置的交换机来说是端口数，对于模块化交换机来说是插槽数，有-C标志表明带光纤接口，-M表示模块化，-A和-EN分别是指交换机软件是标准板或企业版。Cisco接入层有2900系列，汇聚层的有3500系列，核心层的6000系列，还有模块化的5K、7K系列。也不是绝对的，关键技术功能还要看说明书。-</p>
+<p>华为：</p>
+<p>华为的标识算是比较清晰的，它的命名一般按下面规范。第一位：是华为的产品线定位，比如，2 .3 .5 .6 .8系列； 第二位：表明是二层还是三层，其中0-4是二层，5-9是三层；第三四位:表示的是插槽数或端口数，比如3026表示，24个电口+2个光口，共26个属于二层交换机；3552呢，48个电口+4个光口，共计52个，属于3层交换机；</p>
+<p>通过以上对“层”的世界了解，希望您对企业现有交换机设备的层次结构理解更加深刻，对今后网络设计规划有所帮助。</p>
+<p>总之，我的建议是网络规划前，交换机的选择要分清层次，从长计议。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/net/switch.html" title="走进交换机“层”的世界">https://travonf.github.io/blog/net/switch.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/net/" rel="tag"># net</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/other/config.html" rel="prev" title=".screenrc">
+                  <i class="fa fa-chevron-left"></i> .screenrc
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/net/arp.html" rel="next" title="TCP/IP协议——ARP详解">
+                  TCP/IP协议——ARP详解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

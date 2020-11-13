@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="本篇主要介绍关于mysql的一些非常基础的知识，为后面的sql优化做准备。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基础知识扫盲">
+<meta property="og:url" content="https://travonf.github.io/blog/db/mysql/basic.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="本篇主要介绍关于mysql的一些非常基础的知识，为后面的sql优化做准备。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:modified_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/db/mysql/basic.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>mysql基础知识扫盲 | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%EF%BC%9A%E8%BF%9E%E6%8E%A5mysql"><span class="nav-number">1.</span> <span class="nav-text">一：连接mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%9A%84sql%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.</span> <span class="nav-text">二：常用的sql语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%EF%BC%9A%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.</span> <span class="nav-text">三：查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%EF%BC%9A%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">四：聚合操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%EF%BC%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">五：表连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%EF%BC%9A%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-number">6.</span> <span class="nav-text">六：子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%EF%BC%9A%E8%81%94%E5%90%88"><span class="nav-number">7.</span> <span class="nav-text">七：联合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%EF%BC%9A%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">八：常见的函数</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/db/mysql/basic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mysql基础知识扫盲
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本篇主要介绍关于mysql的一些非常基础的知识，为后面的sql优化做准备。</p>
+<a id="more"></a>
+
+<h2 id="一：连接mysql"><a href="#一：连接mysql" class="headerlink" title="一：连接mysql"></a>一：连接mysql</h2><p>关于mysql的下载和安装我在这里就不说了，第一步我们要连接我们的mysql服务器，打开cmd命令切换到你安装MySQL Server 的bin目录下，然后输入mysql -h localhost -u root -p</p>
+<p>其中-h 表示你的主机地址（本机就是localhost,记住不要带端口号） -u 就是连接数据库名称 -p就是连接密码。出现以下图就表示连接成功了</p>
+<h2 id="二：常用的sql语句"><a href="#二：常用的sql语句" class="headerlink" title="二：常用的sql语句"></a>二：常用的sql语句</h2><p>2.1：创建数据库<br><code>create database 数据库名</code></p>
+<p>2.2：删除数据库<br><code>drop database 数据库名</code></p>
+<p>2.3：查询系统中的数据库<br><code>show databases</code></p>
+<p>2.4：使用数据库<br><code>use 数据库名</code></p>
+<p>2.5：查询数据库的表<br><code>show tables</code></p>
+<p>2.6：查询表结构<br><code>desc +表名</code></p>
+<p>2.7：查询创建表的sql语句<br><code>show create table +表名</code></p>
+<p>2.8：删除表<br><code>drop +表名</code></p>
+<p>2.9：一次删除多条表记录：<br><code>delete t1,t2 from t1,t2[where 条件] 如果from后面用别名那么delete后面也需要用别名</code></p>
+<p>3.0：一次性更新多次表<br><code>update t1,t2 ...tn set t1.field=expr1,tn.exprn=exprn;</code></p>
+<h2 id="三：查询"><a href="#三：查询" class="headerlink" title="三：查询"></a>三：查询</h2><p>3.1：select普通查询</p>
+<p>3.2：查询不重复记录</p>
+<p>用关键字distinct</p>
+<p>3.3：排序和限制</p>
+<p>用关键字order by进行排序desc降序asc升序，limit关键字进行限制输出</p>
+<p>order by后面跟字段（order by只写一次即可先排第一个字段然后第二个以此类推，limit 后面第一个数是索性，第二个是输出的个数）。</p>
+<h2 id="四：聚合操作"><a href="#四：聚合操作" class="headerlink" title="四：聚合操作"></a>四：聚合操作</h2><p>很多情况下，用户都需要进行一些统计，比如统计整个公司的人数或者部门的人数，这时就会用到聚合操作。聚合操作语法入戏下</p>
+<p>select 【field1，field2…fieldn】fun_name from 表名</p>
+<p>where 条件</p>
+<p>group by field1，field2…fieldn</p>
+<p>with rollup</p>
+<p>having 条件</p>
+<p>fun_name叫做聚合函数或者聚合操作，常见的有sum（求和）、 count（*）记录数、 max（最大值）、min（最小值）。</p>
+<p>group by 表示要分类聚合的字段，比如按照部门分类统计的员工数量，部门就应该写在group by后面</p>
+<p>with rollup 是可选语法，表示是否对分类聚合后的结合在进行汇总</p>
+<p>having 表示对分类后的结果在次进行筛选</p>
+<p>4.1：按照课程号进行统计班级的人数</p>
+<p>4.2：按年级统计人数，并统计总人数</p>
+<p>rollup就是进行人数汇总的，从图中我们可以看出。</p>
+<p>4.3：统计年龄不小于20的人数</p>
+<p>having和where的区别：having是对聚合后的结果进行筛选，而where是在聚合钱就对记录进行筛选，如果逻辑允许，尽可能使用where先过滤记录，这样将减少结果集，对聚合的效率大大的提高，然后在根据having进行过滤。</p>
+<h2 id="五：表连接"><a href="#五：表连接" class="headerlink" title="五：表连接"></a>五：表连接</h2><p>如果需要同时显示多个表中的字段的时候，就可以使用表连接来实现这样的功能。从大类上可以分为内连接和外连接，他们的主要区别是：内连接仅仅筛选出2个表互相匹配的记录，而外连接会筛选出其他不匹配的记录，我们经常使用的是内连接。</p>
+<p>5.1：查询学生所选择的课程</p>
+<p>外连接又分为左连接和右连接。</p>
+<p>左连接（包含所有左边表中的记录甚至右边表中没有和它匹配的记录）</p>
+<p>右连接（包含所有右边表中的记录甚至左边表中没有和它匹配的记录）</p>
+<p>从中可以看出左连接是以左边的表为主，右连接是以右边的表为主。</p>
+<h2 id="六：子查询"><a href="#六：子查询" class="headerlink" title="六：子查询"></a>六：子查询</h2><p>某些情况下，当进行查询的时候，需要的条件是另外一个select语句的结果，这个时候就用到了子查询，用于子查询的关键字主要包括in、not in、=、!=、exist、not exist等</p>
+<p>如使用in进行查询</p>
+<p>但是使用内连接同样能达到以上的效果</p>
+<p>但是内连接的效率在很多情况下都是高于子查询的，所以如果不影响业务逻辑的前提下优先考虑内联。</p>
+<h2 id="七：联合"><a href="#七：联合" class="headerlink" title="七：联合"></a>七：联合</h2><p>将2个表的数据按照一定规则下查询出来，将结果合并一起显示出来。这个时候我们就可以使用union或者union all。具体语法如下</p>
+<p>select * from t1 union\union all select * from t2 union\union all select * from tn;</p>
+<p>union和union all的区别在于union是在筛选的结果集去除重复的记录。</p>
+<p>切记不可以2个表不匹配就进行联合，如下</p>
+<p>如果我们每个表都查询2个字段</p>
+<h2 id="八：常见的函数"><a href="#八：常见的函数" class="headerlink" title="八：常见的函数"></a>八：常见的函数</h2><p>8.1：concat</p>
+<p>concat函数：把传入的参数连成一个字符串，任何字符串和null进行拼接的结果都是null，如下图</p>
+<p>8.2：insert(str,x,y,instr)函数，将字符串str从第X个位置开始，y个字符长的字符串替换成instr下面把字符串hellomysql2016的第5个字符后面的4个字符替换成you</p>
+<p>8.3：Lower(Str)和Upper（Str）把字符串转换成小写或者大写。</p>
+<p>8.4：left（str，x）和right（str，x）分别返回字符串最左边的x个字符和最右边的x个字符，如果第二个参数为null，不返回任何字符</p>
+<p>8.5：ltrim(str)和rtrim(str)去掉字符串左边或者右边的字符</p>
+<p>8.6：repeat(str,x)：返回str重复x次的结果</p>
+<p>8.7：replace（str，a，b）用字符串b替换字符串str中所有出现字符串a。</p>
+<p>8.8：trim(str)去掉开头和结尾的空格</p>
+<p>8.9:substring(str,x,y)：返回从字符串str中的第x个位置起y个字符串长度的字符串。</p>
+<p>参考的资料是深入浅出的mysql。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/db/mysql/basic.html" title="mysql基础知识扫盲">https://travonf.github.io/blog/db/mysql/basic.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/dev/markdown/basic.html" rel="prev" title="MarkDown使用说明">
+                  <i class="fa fa-chevron-left"></i> MarkDown使用说明
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/read/conversationally-speaking.html" rel="next" title="谈话的力量">
+                  谈话的力量 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

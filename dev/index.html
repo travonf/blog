@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="编程原则来源：https:&#x2F;&#x2F;www.artima.com&#x2F;weblogs&#x2F;viewpost.jsp?thread&#x3D;331531 DRY - don’t repeat yourself - 不要自我重复一旦程序里开始有重复现象的出现(例如很长的表达式、一大堆的语句，但都是为了表达相同的概念)，你就需要对代码进行一次新的提炼，抽象 Abstraction Principle - 提炼原则程序中任何一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Principles of Good Programming">
+<meta property="og:url" content="https://travonf.github.io/blog/dev/index.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="编程原则来源：https:&#x2F;&#x2F;www.artima.com&#x2F;weblogs&#x2F;viewpost.jsp?thread&#x3D;331531 DRY - don’t repeat yourself - 不要自我重复一旦程序里开始有重复现象的出现(例如很长的表达式、一大堆的语句，但都是为了表达相同的概念)，你就需要对代码进行一次新的提炼，抽象 Abstraction Principle - 提炼原则程序中任何一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:modified_time" content="2010-06-01T12:10:40.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="dev">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/dev/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>The Principles of Good Programming | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">编程原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DRY-don%E2%80%99t-repeat-yourself-%E4%B8%8D%E8%A6%81%E8%87%AA%E6%88%91%E9%87%8D%E5%A4%8D"><span class="nav-number">1.1.</span> <span class="nav-text">DRY - don’t repeat yourself - 不要自我重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstraction-Principle-%E6%8F%90%E7%82%BC%E5%8E%9F%E5%88%99"><span class="nav-number">1.2.</span> <span class="nav-text">Abstraction Principle - 提炼原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KISS-Keep-it-simple-stupid"><span class="nav-number">1.3.</span> <span class="nav-text">KISS - Keep it simple, stupid!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YAGNI-ya-ain%E2%80%99t-gonna-need-it"><span class="nav-number">1.4.</span> <span class="nav-text">YAGNI - ya ain’t gonna need it</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Do-the-simplest-thing-that-could-possibly-work"><span class="nav-number">1.5.</span> <span class="nav-text">Do the simplest thing that could possibly work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Don%E2%80%99t-make-me-think"><span class="nav-number">1.6.</span> <span class="nav-text">Don’t make me think</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-Closed-Principle"><span class="nav-number">1.7.</span> <span class="nav-text">Open&#x2F;Closed Principle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Write-Code-for-the-Maintainer"><span class="nav-number">1.8.</span> <span class="nav-text">Write Code for the Maintainer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POLS-Principle-of-least-surprise"><span class="nav-number">1.9.</span> <span class="nav-text">POLS - Principle of least surprise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-Responsibility-Principle"><span class="nav-number">1.10.</span> <span class="nav-text">Single Responsibility Principle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loose-coupling-high-cohesion"><span class="nav-number">1.11.</span> <span class="nav-text">loose coupling high cohesion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimize-Coupling"><span class="nav-number">1.12.</span> <span class="nav-text">Minimize Coupling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximize-Cohesion"><span class="nav-number">1.13.</span> <span class="nav-text">Maximize Cohesion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hide-Implementation-Details"><span class="nav-number">1.14.</span> <span class="nav-text">Hide Implementation Details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Law-of-Demeter"><span class="nav-number">1.15.</span> <span class="nav-text">Law of Demeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoid-Premature-Optimization"><span class="nav-number">1.16.</span> <span class="nav-text">Avoid Premature Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Reuse-is-Good"><span class="nav-number">1.17.</span> <span class="nav-text">Code Reuse is Good</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separation-of-Concerns"><span class="nav-number">1.18.</span> <span class="nav-text">Separation of Concerns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embrace-Change"><span class="nav-number">1.19.</span> <span class="nav-text">Embrace Change</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/index.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Principles of Good Programming
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="编程原则"><a href="#编程原则" class="headerlink" title="编程原则"></a>编程原则</h2><p>来源：<a target="_blank" rel="noopener" href="https://www.artima.com/weblogs/viewpost.jsp?thread=331531">https://www.artima.com/weblogs/viewpost.jsp?thread=331531</a></p>
+<h3 id="DRY-don’t-repeat-yourself-不要自我重复"><a href="#DRY-don’t-repeat-yourself-不要自我重复" class="headerlink" title="DRY - don’t repeat yourself - 不要自我重复"></a>DRY - don’t repeat yourself - 不要自我重复</h3><p>一旦程序里开始有重复现象的出现(例如很长的表达式、一大堆的语句，但都是为了表达相同的概念)，你就需要对代码进行一次新的提炼，抽象</p>
+<h3 id="Abstraction-Principle-提炼原则"><a href="#Abstraction-Principle-提炼原则" class="headerlink" title="Abstraction Principle - 提炼原则"></a>Abstraction Principle - 提炼原则</h3><p>程序中任何一段具有功能性的代码在源代码文件中应该唯一的存在</p>
+<h3 id="KISS-Keep-it-simple-stupid"><a href="#KISS-Keep-it-simple-stupid" class="headerlink" title="KISS - Keep it simple, stupid!"></a>KISS - Keep it simple, stupid!</h3><p>保持简单</p>
+<p>简单化(避免复杂)永远都应该是你的头等目标。简单的程序让你写起来容易，产生的bug更少，更容易维护修改。</p>
+<h3 id="YAGNI-ya-ain’t-gonna-need-it"><a href="#YAGNI-ya-ain’t-gonna-need-it" class="headerlink" title="YAGNI - ya ain’t gonna need it"></a>YAGNI - ya ain’t gonna need it</h3><p>你不会用到它的</p>
+<p>除非你真正需要用到它，否则不要轻易加上那些乱七八糟用不到的功能。表示程序员不应为目前还不需要的功能编写代码</p>
+<h3 id="Do-the-simplest-thing-that-could-possibly-work"><a href="#Do-the-simplest-thing-that-could-possibly-work" class="headerlink" title="Do the simplest thing that could possibly work"></a>Do the simplest thing that could possibly work</h3><p>用最简单的方法让程序跑起来</p>
+<p>在开发时有个非常好的问题你需要问问自己，“怎样才能最简单的让程序跑起来？”这能帮助我们在设计时让程序保持简单。</p>
+<h3 id="Don’t-make-me-think"><a href="#Don’t-make-me-think" class="headerlink" title="Don’t make me think"></a>Don’t make me think</h3><p>不要让我动脑子</p>
+<p>这实际上是Steve Krug 关于web界面操作的一本书的书名，但也适用于编程。</p>
+<p>主旨是，程序代码应该让人们花最小的努力就能读懂和理解。如果一段程序对于阅读者来说需要花费太多的努力才能理解，那它很可能需要进一步简化。</p>
+<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><p>开放/封闭原则</p>
+<p>程序里的实体项(类，模块，函数等)应该对扩展行为开放，对修改行为关闭。换句话说，不要写允许别人修改的类，应该写能让人们扩展的类</p>
+<h3 id="Write-Code-for-the-Maintainer"><a href="#Write-Code-for-the-Maintainer" class="headerlink" title="Write Code for the Maintainer"></a>Write Code for the Maintainer</h3><p>为维护者写程序</p>
+<p>任何值得你编写的程序在将来都是值得你去维护的，也许由你维护，也许由他人。</p>
+<p>在将来，当你不得不维护这些程序时，你对这些代码的记忆会基本上跟一个陌生人一样，所以，你最好还是当成一直在给别人写程序。</p>
+<p>一个有助于你记住这个原则的办法是“写程序时时刻记着，这个将来要维护你写的程序的人是一个有严重暴力倾向，并且知道你住在哪里的精神变态者”。</p>
+<h3 id="POLS-Principle-of-least-surprise"><a href="#POLS-Principle-of-least-surprise" class="headerlink" title="POLS - Principle of least surprise"></a>POLS - Principle of least surprise</h3><p>最小意外原则</p>
+<p>最少意外原则通常是使用在用户界面设计上，但这个原则同样适用于编写程序。</p>
+<p>程序代码应尽可能的不要让阅读者感到意外。</p>
+<p>也就是说应该遵循编码规范和常见习惯，按照公认的习惯方式进行组织和命名，不符常规的编程动作应该尽可能的避免。</p>
+<h3 id="Single-Responsibility-Principle"><a href="#Single-Responsibility-Principle" class="headerlink" title="Single Responsibility Principle"></a>Single Responsibility Principle</h3><p>单一职责原则</p>
+<p>一个代码组件(例如类或函数)应该只执行单一的预设的任务。</p>
+<h3 id="loose-coupling-high-cohesion"><a href="#loose-coupling-high-cohesion" class="headerlink" title="loose coupling high cohesion"></a>loose coupling high cohesion</h3><p>高内聚低耦合</p>
+<h3 id="Minimize-Coupling"><a href="#Minimize-Coupling" class="headerlink" title="Minimize Coupling"></a>Minimize Coupling</h3><p>最小化耦合性</p>
+<p>一个代码片段(代码块，函数，类等)应该最小化它对其它代码的依赖。这个目标通过尽可能少的使用共享变量来实现。</p>
+<p>“低耦合是一个计算机系统结构合理、设计优秀的标志，把它与高聚合特征联合起来，会对可读性和可维护性等重要目标的实现具有重要的意义。”</p>
+<h3 id="Maximize-Cohesion"><a href="#Maximize-Cohesion" class="headerlink" title="Maximize Cohesion"></a>Maximize Cohesion</h3><p>最大化内聚性</p>
+<p>具有相似功能的代码应该放在同一个代码组件里。</p>
+<h3 id="Hide-Implementation-Details"><a href="#Hide-Implementation-Details" class="headerlink" title="Hide Implementation Details"></a>Hide Implementation Details</h3><p>隐藏实现细节</p>
+<p>隐藏实现细节能最小化你在修改程序组件时产生的对那些使用这个组件的其它程序模块的影响</p>
+<h3 id="Law-of-Demeter"><a href="#Law-of-Demeter" class="headerlink" title="Law of Demeter"></a>Law of Demeter</h3><p>笛米特法则</p>
+<p>程序组件应该只跟它的直系亲属有关系(例如继承类，内包含的对象，通过参数入口传入的对象等。)</p>
+<h3 id="Avoid-Premature-Optimization"><a href="#Avoid-Premature-Optimization" class="headerlink" title="Avoid Premature Optimization"></a>Avoid Premature Optimization</h3><p>避免过早优化</p>
+<p>只有当你的程序没有其它问题，只是比你预期的要慢时，你才能去考虑优化工作。</p>
+<p>只有当其它工作都做完后，你才能考虑优化问题，而且你只应该依据经验做法来优化。</p>
+<p>“对于小幅度的性能改进都不该考虑，要优化就应该是97%的性能提升：过早优化是一切罪恶的根源”—Donald Knuth。</p>
+<h3 id="Code-Reuse-is-Good"><a href="#Code-Reuse-is-Good" class="headerlink" title="Code Reuse is Good"></a>Code Reuse is Good</h3><p>代码复用</p>
+<p>这不是非常核心的原则，但它跟其它原则一样非常有价值。代码复用能提高程序的可靠性，节省你的开发时间</p>
+<h3 id="Separation-of-Concerns"><a href="#Separation-of-Concerns" class="headerlink" title="Separation of Concerns"></a>Separation of Concerns</h3><p>职责分离</p>
+<p>不同领域的功能应该由完全不同的代码模块来管理，尽量减少这样的模块之间的重叠。</p>
+<h3 id="Embrace-Change"><a href="#Embrace-Change" class="headerlink" title="Embrace Change"></a>Embrace Change</h3><p>拥抱变化</p>
+<p>是Kent Beck的一本书的副标题，它也是极限编程和敏捷开发方法的基本信条之一。</p>
+<p>很多的其它原则都基于此观念：面对变化，欢迎变化。事实上，一些经典的软件工程原则，例如最小化耦合，就是为了让程序更容易面对变化。</p>
+<p>不论你是否采用了极限编程方法，这个原则对你的程序开发都有重要意义。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/dev/index.html" title="The Principles of Good Programming">https://travonf.github.io/blog/dev/index.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/dev/" rel="tag"># dev</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/net/arp.html" rel="prev" title="TCP/IP协议——ARP详解">
+                  <i class="fa fa-chevron-left"></i> TCP/IP协议——ARP详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/dev/python/basic.html" rel="next" title="Python基础">
+                  Python基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

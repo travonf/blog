@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="概述 目前全球只有四家独立BIOS供应商，曾经的Award Software与General Software均被Phoenix Technologies收购，Microid Research被Unicore Software收购，SystemSoft被Insyde Software收购。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何通过命令行配置BIOS?">
+<meta property="og:url" content="https://travonf.github.io/blog/hw/conf-bios.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="概述 目前全球只有四家独立BIOS供应商，曾经的Award Software与General Software均被Phoenix Technologies收购，Microid Research被Unicore Software收购，SystemSoft被Insyde Software收购。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-06T12:56:34.000Z">
+<meta property="article:modified_time" content="2018-11-06T12:56:34.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="BIOS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/hw/conf-bios.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何通过命令行配置BIOS? | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%8F%8A%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">检测及修复方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%9F%E4%BA%A7%E5%95%86"><span class="nav-number">2.1.</span> <span class="nav-text">检查服务器生产商</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8E%E4%B8%BA-Huawei"><span class="nav-number">2.1.1.</span> <span class="nav-text">华为 &#x2F; Huawei</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AA%E6%BD%AE-Inspur"><span class="nav-number">2.1.2.</span> <span class="nav-text">浪潮 &#x2F; Inspur</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5BIOS%E6%8F%90%E4%BE%9B%E5%95%86%E5%8F%8A%E7%89%88%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">检查BIOS提供商及版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Insyde-Corp"><span class="nav-number">2.2.1.</span> <span class="nav-text">Insyde Corp.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-69"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1.69</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#American-Megatrends-Inc"><span class="nav-number">2.2.2.</span> <span class="nav-text">American Megatrends Inc.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-10"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">4.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-01-10"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">1.01.10</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">2.2.3.</span> <span class="nav-text">Others</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9"><span class="nav-number">3.</span> <span class="nav-text">命令帮助</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#uniCfg"><span class="nav-number">3.1.</span> <span class="nav-text">uniCfg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SCELNX-64"><span class="nav-number">3.2.</span> <span class="nav-text">SCELNX_64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E4%BE%8B"><span class="nav-number">3.3.</span> <span class="nav-text">范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.1.</span> <span class="nav-text">导出所有配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.2.</span> <span class="nav-text">导入所有配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%92%8C%E8%AE%BE%E7%BD%AENuma"><span class="nav-number">3.3.3.</span> <span class="nav-text">查询和设置Numa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%92%8C%E8%AE%BE%E7%BD%AEHyper-Threading"><span class="nav-number">3.3.4.</span> <span class="nav-text">查询和设置Hyper-Threading</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/hw/conf-bios.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何通过命令行配置BIOS?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-11-06T20:56:34+08:00">2018-11-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>目前全球只有四家独立BIOS供应商，<br>曾经的Award Software与General Software均被Phoenix Technologies收购，<br>Microid Research被Unicore Software收购，<br>SystemSoft被Insyde Software收购。  </p>
+</blockquote>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phoenix Technologies</td>
+<td>美国凤凰科技。</td>
+</tr>
+<tr>
+<td>American Megatrends</td>
+<td>美国安迈科技，目前为全球最大的BIOS供应商。之前曾被凤凰科技超过。</td>
+</tr>
+<tr>
+<td>Insyde Software</td>
+<td>台湾系微公司。</td>
+</tr>
+<tr>
+<td>Byosoft</td>
+<td>新兴厂商，中国大陆的百敖软件公司。</td>
+</tr>
+</tbody></table>
+<p>华为的服务器BIOS vendor为Insyde，浪潮为AMI，暂未发现使用其他厂商的BIOS，另外两家BIOS暂未发现服务器使用。</p>
+<h1 id="检测及修复方法"><a href="#检测及修复方法" class="headerlink" title="检测及修复方法"></a>检测及修复方法</h1><p>不同的BIOS生厂商配置不同，检测与修复采用的方式不尽相同。</p>
+<h2 id="检查服务器生产商"><a href="#检查服务器生产商" class="headerlink" title="检查服务器生产商"></a>检查服务器生产商</h2><p>通过以下命令检查Manufacturer字段值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmidecode --<span class="built_in">type</span> chassis</span><br></pre></td></tr></table></figure>
+<h3 id="华为-Huawei"><a href="#华为-Huawei" class="headerlink" title="华为 / Huawei"></a>华为 / Huawei</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dmidecode 2.11</span></span><br><span class="line">SMBIOS 2.8 present.</span><br><span class="line"><span class="comment"># SMBIOS implementations newer than version 2.7 are not</span></span><br><span class="line"><span class="comment"># fully supported by this version of dmidecode.</span></span><br><span class="line"></span><br><span class="line">Handle 0x001F, DMI <span class="built_in">type</span> 3, 25 bytes</span><br><span class="line">Chassis Information</span><br><span class="line">	Manufacturer: Huawei</span><br><span class="line">	Type: Rack Mount Chassis</span><br><span class="line">	Lock: Not Present</span><br><span class="line">	Version: H31.2B</span><br><span class="line">	Serial Number: To be filled by O.E.M.</span><br><span class="line">	Asset Tag: TD070100368095</span><br><span class="line">	Boot-up State: Safe</span><br><span class="line">	Power Supply State: Safe</span><br><span class="line">	Thermal State: Safe</span><br><span class="line">	Security Status: None</span><br><span class="line">	OEM Information: 0x00000000</span><br><span class="line">	Height: 2 U</span><br><span class="line">	Number Of Power Cords: 2</span><br><span class="line">	Contained Elements: 0</span><br><span class="line">	SKU Number: Not Specified</span><br></pre></td></tr></table></figure>
+<h3 id="浪潮-Inspur"><a href="#浪潮-Inspur" class="headerlink" title="浪潮 / Inspur"></a>浪潮 / Inspur</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dmidecode 2.11</span></span><br><span class="line">SMBIOS 2.8 present.</span><br><span class="line"><span class="comment"># SMBIOS implementations newer than version 2.7 are not</span></span><br><span class="line"><span class="comment"># fully supported by this version of dmidecode.</span></span><br><span class="line"></span><br><span class="line">Handle 0x0003, DMI <span class="built_in">type</span> 3, 25 bytes</span><br><span class="line">Chassis Information</span><br><span class="line">	Manufacturer: Inspur</span><br><span class="line">	Type: Rack Mount Chassis</span><br><span class="line">	Lock: Not Present</span><br><span class="line">	Version: N32.2B</span><br><span class="line">	Serial Number: 00</span><br><span class="line">	Asset Tag: TD070100554754</span><br><span class="line">	Boot-up State: Safe</span><br><span class="line">	Power Supply State: Safe</span><br><span class="line">	Thermal State: Safe</span><br><span class="line">	Security Status: None</span><br><span class="line">	OEM Information: 0x00000000</span><br><span class="line">	Height: Unspecified</span><br><span class="line">	Number Of Power Cords: 1</span><br><span class="line">	Contained Elements: 1</span><br><span class="line">		&lt;OUT OF SPEC&gt; (0)</span><br><span class="line">	SKU Number: To be filled by O.E.M.</span><br></pre></td></tr></table></figure>
+
+<h2 id="检查BIOS提供商及版本"><a href="#检查BIOS提供商及版本" class="headerlink" title="检查BIOS提供商及版本"></a>检查BIOS提供商及版本</h2><p>通过以下命令检查Vendor、Version字段值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmidecode --<span class="built_in">type</span> bios</span><br></pre></td></tr></table></figure>
+<h3 id="Insyde-Corp"><a href="#Insyde-Corp" class="headerlink" title="Insyde Corp."></a>Insyde Corp.</h3><h4 id="1-69"><a href="#1-69" class="headerlink" title="1.69"></a>1.69</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dmidecode 2.11</span></span><br><span class="line">SMBIOS 2.8 present.</span><br><span class="line"><span class="comment"># SMBIOS implementations newer than version 2.7 are not</span></span><br><span class="line"><span class="comment"># fully supported by this version of dmidecode.</span></span><br><span class="line"></span><br><span class="line">Handle 0x001D, DMI <span class="built_in">type</span> 0, 24 bytes</span><br><span class="line">BIOS Information</span><br><span class="line">	Vendor: Insyde Corp.</span><br><span class="line">	Version: 1.69</span><br><span class="line">	Release Date: 10/31/2015</span><br><span class="line">	Address: 0xE0000</span><br><span class="line">	Runtime Size: 128 kB</span><br><span class="line">	ROM Size: 16384 kB</span><br><span class="line">	Characteristics:</span><br><span class="line">		PCI is supported</span><br><span class="line">		BIOS is upgradeable</span><br><span class="line">		BIOS shadowing is allowed</span><br><span class="line">		Boot from CD is supported</span><br><span class="line">		Selectable boot is supported</span><br><span class="line">		EDD is supported</span><br><span class="line">		</span><br><span class="line">		Japanese floppy <span class="keyword">for</span> NEC 9800 1.2 MB is supported (int 13h)</span><br><span class="line">		Japanese floppy <span class="keyword">for</span> Toshiba 1.2 MB is supported (int 13h)</span><br><span class="line">		5.25<span class="string">&quot;/360 kB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		5.25&quot;</span>/1.2 MB floppy services are supported (int 13h)</span><br><span class="line">		3.5<span class="string">&quot;/720 kB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		3.5&quot;</span>/2.88 MB floppy services are supported (int 13h)</span><br><span class="line">		8042 keyboard services are supported (int 9h)</span><br><span class="line">		CGA/mono video services are supported (int 10h)</span><br><span class="line">		ACPI is supported</span><br><span class="line">		USB legacy is supported</span><br><span class="line">		BIOS boot specification is supported</span><br><span class="line">		Targeted content distribution is supported</span><br><span class="line">		UEFI is supported</span><br><span class="line">	BIOS Revision: 1.0</span><br><span class="line"></span><br><span class="line">Handle 0x0026, DMI <span class="built_in">type</span> 13, 22 bytes</span><br><span class="line">BIOS Language Information</span><br><span class="line">	Language Description Format: Long</span><br><span class="line">	Installable Languages: 2</span><br><span class="line">		en|US|iso8859-1</span><br><span class="line">		zh|CN|unicode</span><br><span class="line">	Currently Installed Language: en|US|iso8859-1</span><br></pre></td></tr></table></figure>
+<h3 id="American-Megatrends-Inc"><a href="#American-Megatrends-Inc" class="headerlink" title="American Megatrends Inc."></a>American Megatrends Inc.</h3><h4 id="4-10"><a href="#4-10" class="headerlink" title="4.10"></a>4.10</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dmidecode 2.11</span></span><br><span class="line">SMBIOS 2.8 present.</span><br><span class="line"><span class="comment"># SMBIOS implementations newer than version 2.7 are not</span></span><br><span class="line"><span class="comment"># fully supported by this version of dmidecode.</span></span><br><span class="line"></span><br><span class="line">Handle 0x0000, DMI <span class="built_in">type</span> 0, 24 bytes</span><br><span class="line">BIOS Information</span><br><span class="line">	Vendor: American Megatrends Inc.</span><br><span class="line">	Version: 4.10</span><br><span class="line">	Release Date: 09/22/2015</span><br><span class="line">	Address: 0xF0000</span><br><span class="line">	Runtime Size: 64 kB</span><br><span class="line">	ROM Size: 8192 kB</span><br><span class="line">	Characteristics:</span><br><span class="line">		PCI is supported</span><br><span class="line">		BIOS is upgradeable</span><br><span class="line">		BIOS shadowing is allowed</span><br><span class="line">		Boot from CD is supported</span><br><span class="line">		Selectable boot is supported</span><br><span class="line">		BIOS ROM is socketed</span><br><span class="line">		EDD is supported</span><br><span class="line">		5.25<span class="string">&quot;/1.2 MB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		3.5&quot;</span>/720 kB floppy services are supported (int 13h)</span><br><span class="line">		3.5<span class="string">&quot;/2.88 MB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		Print screen service is supported (int 5h)</span></span><br><span class="line"><span class="string">		Serial services are supported (int 14h)</span></span><br><span class="line"><span class="string">		Printer services are supported (int 17h)</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		ACPI is supported</span></span><br><span class="line"><span class="string">		USB legacy is supported</span></span><br><span class="line"><span class="string">		BIOS boot specification is supported</span></span><br><span class="line"><span class="string">		Targeted content distribution is supported</span></span><br><span class="line"><span class="string">		UEFI is supported</span></span><br><span class="line"><span class="string">	BIOS Revision: 5.6</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Handle 0x0097, DMI type 13, 22 bytes</span></span><br><span class="line"><span class="string">BIOS Language Information</span></span><br><span class="line"><span class="string">	Language Description Format: Long</span></span><br><span class="line"><span class="string">	Installable Languages: 1</span></span><br><span class="line"><span class="string">		en|US|iso8859-1</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	Currently Installed Language: en|US|iso8859-1</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-01-10"><a href="#1-01-10" class="headerlink" title="1.01.10"></a>1.01.10</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dmidecode 2.12-dmifs</span></span><br><span class="line">SMBIOS 2.8 present.</span><br><span class="line"></span><br><span class="line">Handle 0x0000, DMI <span class="built_in">type</span> 0, 24 bytes</span><br><span class="line">BIOS Information</span><br><span class="line">	Vendor: American Megatrends Inc.</span><br><span class="line">	Version: 1.01.10</span><br><span class="line">	Release Date: 07/08/2017</span><br><span class="line">	Address: 0xF0000</span><br><span class="line">	Runtime Size: 64 kB</span><br><span class="line">	ROM Size: 8192 kB</span><br><span class="line">	Characteristics:</span><br><span class="line">		PCI is supported</span><br><span class="line">		BIOS is upgradeable</span><br><span class="line">		BIOS shadowing is allowed</span><br><span class="line">		Boot from CD is supported</span><br><span class="line">		Selectable boot is supported</span><br><span class="line">		BIOS ROM is socketed</span><br><span class="line">		EDD is supported</span><br><span class="line">		5.25<span class="string">&quot;/1.2 MB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		3.5&quot;</span>/720 kB floppy services are supported (int 13h)</span><br><span class="line">		3.5<span class="string">&quot;/2.88 MB floppy services are supported (int 13h)</span></span><br><span class="line"><span class="string">		Print screen service is supported (int 5h)</span></span><br><span class="line"><span class="string">		8042 keyboard services are supported (int 9h)</span></span><br><span class="line"><span class="string">		Serial services are supported (int 14h)</span></span><br><span class="line"><span class="string">		Printer services are supported (int 17h)</span></span><br><span class="line"><span class="string">		ACPI is supported</span></span><br><span class="line"><span class="string">		USB legacy is supported</span></span><br><span class="line"><span class="string">		BIOS boot specification is supported</span></span><br><span class="line"><span class="string">		Targeted content distribution is supported</span></span><br><span class="line"><span class="string">		UEFI is supported</span></span><br><span class="line"><span class="string">	BIOS Revision: 5.11</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Handle 0x0095, DMI type 13, 22 bytes</span></span><br><span class="line"><span class="string">BIOS Language Information</span></span><br><span class="line"><span class="string">	Language Description Format: Long</span></span><br><span class="line"><span class="string">	Installable Languages: 2</span></span><br><span class="line"><span class="string">		en|US|iso8859-1</span></span><br><span class="line"><span class="string">		zh|CN|unicode</span></span><br><span class="line"><span class="string">	Currently Installed Language: en|US|iso8859-1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><table>
+<thead>
+<tr>
+<th>Manufacturer</th>
+<th>BIOS Vendor</th>
+<th>BIOS Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dell Inc.</td>
+<td>Dell Inc.</td>
+<td>1.4.5</td>
+</tr>
+<tr>
+<td>Dell Inc.</td>
+<td>Dell Inc.</td>
+<td>1.4.5</td>
+</tr>
+<tr>
+<td>FOXCONN</td>
+<td>American   Megatrends   Inc.</td>
+<td>6G104020</td>
+</tr>
+<tr>
+<td>FOXCONN</td>
+<td>American   Megatrends   Inc.</td>
+<td>6G104020</td>
+</tr>
+<tr>
+<td>FOXCONN</td>
+<td>American   Megatrends   Inc.</td>
+<td>6G104020</td>
+</tr>
+<tr>
+<td>FOXCONN</td>
+<td>American   Megatrends   Inc.</td>
+<td>6G104020</td>
+</tr>
+<tr>
+<td>HPE</td>
+<td>HPE</td>
+<td>U30</td>
+</tr>
+<tr>
+<td>HPE</td>
+<td>HPE</td>
+<td>U30</td>
+</tr>
+<tr>
+<td>HPE</td>
+<td>HPE</td>
+<td>U30</td>
+</tr>
+<tr>
+<td>Huawei</td>
+<td>INSYDE Corp.</td>
+<td>0.55</td>
+</tr>
+<tr>
+<td>Inspur</td>
+<td>Inspur</td>
+<td>3.0.25</td>
+</tr>
+<tr>
+<td>Inspur</td>
+<td>Inspur</td>
+<td>3.0.25</td>
+</tr>
+<tr>
+<td>Lenovo</td>
+<td>Lenovo</td>
+<td>-[IVE116U-1.22]-</td>
+</tr>
+<tr>
+<td>Lenovo</td>
+<td>Lenovo</td>
+<td>-[IVE116U-1.22]-</td>
+</tr>
+<tr>
+<td>Lenovo</td>
+<td>Lenovo</td>
+<td>-[IVE116U-1.22]-</td>
+</tr>
+<tr>
+<td>New H3C   Technologies Co., Ltd.</td>
+<td>American   Megatrends   Inc.</td>
+<td>1.00.26</td>
+</tr>
+<tr>
+<td>New H3C   Technologies Co., Ltd.</td>
+<td>American   Megatrends   Inc.</td>
+<td>1.00.26</td>
+</tr>
+<tr>
+<td>Sugon</td>
+<td>American   Megatrends   Inc.</td>
+<td>0JGST025</td>
+</tr>
+</tbody></table>
+<h1 id="命令帮助"><a href="#命令帮助" class="headerlink" title="命令帮助"></a>命令帮助</h1><blockquote>
+<p>查找各种资料发现，<br>Huawei服务器使用Insyde BIOS，可以使用<code>uniCfg</code>命令在线读取相关BIOS item及写入配置，<br>Inspur服务器使用AMI BIOS，官方提供<code>AMISCE</code>工具在线配置BIOS，<br>这个工具具体命令在不同操作系统及架构下名称不同，如Linux x64叫<code>SCELNX_64</code>，Windows x64叫<code>scewin_64</code>，<br>目前服务器大部分使用的都是Linux OS，我们当前关注LNX即可。  </p>
+</blockquote>
+<h2 id="uniCfg"><a href="#uniCfg" class="headerlink" title="uniCfg"></a>uniCfg</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/uniCfg -h</span></span><br><span class="line"></span><br><span class="line">Usage: uniCfg [OPTION]</span><br><span class="line"> -v</span><br><span class="line"> -V</span><br><span class="line">      Display version of this tool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> -i</span><br><span class="line"> -I</span><br><span class="line">      Display generic information</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> -c</span><br><span class="line"> -C</span><br><span class="line">      Clear BIOS Setup Configuration</span><br><span class="line">      Notice: It must be reboot or power off after clear.</span><br><span class="line">              1. Read/Write Configuration value after clear without reboot/poweroff,it will report error</span><br><span class="line">              2. Clear BIOS Setup Configuration again without reboot/poweroff, it will report error</span><br><span class="line"></span><br><span class="line"> -r &lt;Configuration&gt;...</span><br><span class="line"> -R &lt;Configuration&gt;...</span><br><span class="line">      Read Configuration value from BIOS Setup, the Configuration is <span class="keyword">case</span> sensitive.</span><br><span class="line">      For example:</span><br><span class="line">      ./uniCfg -r PowerSaving</span><br><span class="line">      ./uniCfg -r BootOrder</span><br><span class="line">      It supports <span class="built_in">read</span> more Configuration items at once, <span class="keyword">for</span> example:</span><br><span class="line">      ./uniCfg -r BootOrder PowerSaving CustomPowerPolicy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> -w &lt;Configuration:value&gt;...</span><br><span class="line"> -W &lt;Configuration:value&gt;...</span><br><span class="line">      Write Configuration value to BIOS Setup, the Configuration is <span class="keyword">case</span> sensitive.</span><br><span class="line">      Notice:</span><br><span class="line">      1. Value must be numeric, can not be the value description (like as Enable/Disable).</span><br><span class="line">         If the number bigger than ten, use 0x (hex) to start.</span><br><span class="line">      2. BootOrder is special, the value use four number, like 1203, 2301, 0123, 3120 and so on.</span><br><span class="line">         0:PXE/1:HDD/2:CD DVD/3:OTHER.</span><br><span class="line">      For example:</span><br><span class="line">      ./uniCfg -w PowerSaving:1</span><br><span class="line">      ./uniCfg -w BootOrder:2301</span><br><span class="line">      It supports write more Configuration items at once, <span class="keyword">for</span> example:</span><br><span class="line">      ./uniCfg -w BootOrder:2301 PowerSaving:1 CustomPowerPolicy:1</span><br><span class="line"></span><br><span class="line"> -rf [FileName]</span><br><span class="line"> -RF [FileName]</span><br><span class="line">      Read Configuration from file, <span class="keyword">then</span> use the Configuration to <span class="built_in">read</span> value from BIOS Setup.</span><br><span class="line">      The Configuration is <span class="keyword">case</span> sensitive.</span><br><span class="line">      Notice:</span><br><span class="line">      1. If omit the file argument, it will use the Reference to <span class="built_in">read</span> the Configuration.</span><br><span class="line">      2. If use the file argument, the file content should follow below two format,</span><br><span class="line">         and only have one Configuration <span class="keyword">in</span> one line.</span><br><span class="line">           Format 1 example:</span><br><span class="line">           PowerSaving</span><br><span class="line">           BootOrder</span><br><span class="line">           CustomPowerPolicy</span><br><span class="line">           Format 2 example:</span><br><span class="line">           PowerSaving:1</span><br><span class="line">           BootOrder:2301</span><br><span class="line">           CustomPowerPolicy:1</span><br><span class="line">      3. The result of the Configuration value will be saved as uniCfg.ini file,</span><br><span class="line">         it will replace the old uniCfg.ini <span class="keyword">if</span> it exist.</span><br><span class="line"></span><br><span class="line"> -wf [FileName]</span><br><span class="line"> -WF [FileName]</span><br><span class="line">      Read Configuration and value from file, <span class="keyword">then</span> write the Configuration and value to BIOS Setup.</span><br><span class="line">      The Configuration is <span class="keyword">case</span> sensitive.</span><br><span class="line">      Notice:</span><br><span class="line">      1. If omit the file argument, it will use the uniCfg.ini file as the file argument.</span><br><span class="line">         At this <span class="keyword">case</span>, <span class="keyword">if</span> the uniCfg.ini file is not exist, it will report error.</span><br><span class="line">      2. If use the file argument, the file content should follow below format,</span><br><span class="line">         only have one Configuration <span class="keyword">in</span> one line.</span><br><span class="line">           Format example:</span><br><span class="line">           PowerSaving:1</span><br><span class="line">           BootOrder:2301</span><br><span class="line">           CustomPowerPolicy:1</span><br><span class="line"></span><br><span class="line"> -O Setup/SetupDefault/CustomDefault</span><br><span class="line">      Get each item config value form Setup/SetupDefault/CustomDefault, the result will store <span class="keyword">in</span> ../custom.</span><br><span class="line"> SetCustomDefault</span><br><span class="line">      Store current configuration to CustomDefault.</span><br><span class="line"> LoadCustomDefault</span><br><span class="line">      Retore Customdefault configuration to Setup.</span><br><span class="line"></span><br><span class="line"> -hh</span><br><span class="line"> -HH</span><br><span class="line">      Print the Reference, include Configuration Reference, and Dependence Reference.</span><br><span class="line">      The Configuration Reference format show as below:</span><br><span class="line">      <span class="string">&quot;Configuration&quot;</span>:<span class="string">&quot;value1:Description1/value2:Description2&quot;</span>  -- <span class="string">&quot;BIOS Setup Name&quot;</span></span><br><span class="line"></span><br><span class="line"> other option:</span><br><span class="line"></span><br><span class="line"> customset.ini      Configure BIOS Setup by customset.ini file, mostly, it use <span class="keyword">for</span> production line.</span><br><span class="line"></span><br><span class="line"> -rb &lt;FileName&gt;</span><br><span class="line"> -RB &lt;FileName&gt;</span><br><span class="line">      Read Setup Data to Bin file</span><br><span class="line"></span><br><span class="line"> -wb &lt;FileName&gt;</span><br><span class="line"> -WB &lt;FileName&gt;</span><br><span class="line">      Write Bin file to setup data</span><br><span class="line"></span><br><span class="line">Warning:</span><br><span class="line">          1. Some Menu has subMenu, when <span class="built_in">set</span> subMenu, Menu must be enabled;</span><br><span class="line">             When Menu is disabled, subMenu should be disabled too.</span><br><span class="line">             run option -hh or -HH to see <span class="built_in">which</span> Menu has subMenu.(Dependence Reference)</span><br><span class="line">          2. To make sure the setting <span class="keyword">function</span> is OK, it must be reboot after setting.</span><br><span class="line">          3. It may cause power on unnormally <span class="keyword">if</span> the setting is not correctly.</span><br><span class="line"></span><br><span class="line"> time 260.00 (ms).</span><br></pre></td></tr></table></figure>
+
+<p>根据以上命令帮助可以得出脚本开发的大致思路，</p>
+<ol>
+<li>通过<code>uniCfg -rf [FileName]</code>方式读取关注的全部配置，</li>
+<li>然后解析到dict中，</li>
+<li>与预设值逐一比对，</li>
+<li>结果一致则通过，</li>
+<li>不一致尝试通过<code>uniCfg -w &lt;Configuration&gt;</code>方式更新，</li>
+<li>更新失败则交由人工负责，或者找出解决办法，更新脚本。</li>
+</ol>
+<p>那么问题来了，<code>[FileName]</code>文件内容中各个检查项名称是什么？<br>目前已知情况，不同的硬件架构检查项名称不同</p>
+<h2 id="SCELNX-64"><a href="#SCELNX-64" class="headerlink" title="SCELNX_64"></a>SCELNX_64</h2><blockquote>
+<p>SCE(Setup Control Environment)工具是一种命令行工具，提供一种简单的方法在 EFI, DOS, Linux 或者 Windows 环境下去更新 BIOS NVRAM 变量。用户可以通过 AMISCE 工具从 BIOS 中直 接提取几乎所有的 Setup 变量，对提取出变量的脚本文件，通过文本编译器等工具修改后再更 新到 BIOS。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">Default Usage:</span><br><span class="line">	SCELNX_64 /o /s &lt;NVRAM Script File&gt; [/h &lt;HII dump file&gt;] [/sd &lt;Duplicate Script File&gt;] [/b] [/v] [/q] [/lang [Lang Code]] [/sp] [/g] [/a] [/d] [/ndef] [/ce] [/hb] </span><br><span class="line">	SCELNX_64 /i /s &lt;NVRAM Script File&gt; [/ds] [/dm] [/b] [/r] [/lang [Lang Code]] [/d] [/cpwd | /cpwds | /cpwde &lt;Current Admin Password&gt;] [/hb]</span><br><span class="line"></span><br><span class="line">To Export PLDM Tables:</span><br><span class="line">	SCELNX_64 /o /p &lt;PLDM File Name&gt; [/sp] [/g] [/b] [/ndef] [/hb]</span><br><span class="line"></span><br><span class="line">To Import PLDM Tables:</span><br><span class="line">	SCELNX_64 /i /p &lt;PLDM File Name&gt; [/b] [/hb]</span><br><span class="line"></span><br><span class="line">Single Question Update Usage:</span><br><span class="line">	SCELNX_64 /i [/cpwd | /cpwds | /cpwde &lt;Current Admin Password&gt;] [/lang &lt;Lang Code&gt;] /ms &lt;question map string&gt; /qv &lt;question value&gt; [/bt &lt;device <span class="built_in">type</span>&gt;] [/q] [/d] [/dm] [/ds] [/hb]</span><br><span class="line"></span><br><span class="line">	Note: Values of <span class="built_in">type</span> numeric will be taken as hex always (0x prefix optional).</span><br><span class="line"></span><br><span class="line">Single Question Export Usage:</span><br><span class="line">	SCELNX_64 /o [/lang &lt;Lang Code&gt;] /ms &lt;question map string&gt; [/q] [/d] [/hb]</span><br><span class="line"></span><br><span class="line">To <span class="built_in">set</span> new user and new admin password <span class="keyword">for</span> Setup:</span><br><span class="line">	SCELNX_64 /cpwd &lt;current admin password&gt; /apwd &lt;new admin Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwd &lt;current admin password&gt; /upwd &lt;new user Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwd &lt;current admin password&gt; /apwd &lt;new admin Password&gt; /upwd &lt;new user password&gt; [/hb]</span><br><span class="line"></span><br><span class="line">To <span class="built_in">set</span> new user and new admin password of <span class="built_in">type</span> Scan Code <span class="keyword">for</span> Setup:</span><br><span class="line">	SCELNX_64 /cpwds &lt;current admin password&gt; /apwds &lt;new admin Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwds &lt;current admin password&gt; /upwds &lt;new user Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwds &lt;current admin password&gt; /apwds &lt;new admin Password&gt; /upwds &lt;new user password&gt; [/hb]</span><br><span class="line"></span><br><span class="line">To <span class="built_in">set</span> new user and new admin password of <span class="built_in">type</span> EFI Key <span class="keyword">for</span> Setup:</span><br><span class="line">	SCELNX_64 /cpwde &lt;current admin password&gt; /apwde &lt;new admin Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwde &lt;current admin password&gt; /upwde &lt;new user Password&gt; [/hb]</span><br><span class="line">	SCELNX_64 /cpwde &lt;current admin password&gt; /apwde &lt;new admin Password&gt; /upwde &lt;new user password&gt; [/hb]</span><br><span class="line"></span><br><span class="line">Raw Mode Usage:</span><br><span class="line">	SCELNX_64 /o [/c] /l &lt;listing file&gt; /n &lt;NVRAM Raw File&gt; /h &lt;HII dump file&gt; [/d] [/hb]</span><br><span class="line">	SCELNX_64 /i /l &lt;listing file&gt; /n &lt;NVRAM Raw File&gt; [/f] [/d] [/cpwd | /cpwds | /cpwde &lt;Current Admin Password&gt;] [/hb]</span><br><span class="line">	<span class="built_in">where</span>,</span><br><span class="line">	   /o - Indicates Dump NVRAM data <span class="keyword">for</span> Variables found <span class="keyword">in</span> Listing File</span><br><span class="line">	   /i - Indicates Import modified Variable data found <span class="keyword">in</span> Listing File</span><br><span class="line">	   to the NVRAM </span><br><span class="line">	   /c - Optional, Creates Variable Listing File containing information</span><br><span class="line">	   about all the variables found <span class="keyword">in</span> NVRAM</span><br><span class="line">	   /l - Indicates Variable Listing File</span><br><span class="line">	   /n - Indicates NVRAM Script File</span><br><span class="line">	   /h - Indicates HII data file</span><br><span class="line">	   /s - Indicates advanced script file</span><br><span class="line">	   /f - Imports the NVRAM script file even when the CRC checksum of </span><br><span class="line">	   the target BIOS &amp; the script file differs</span><br><span class="line">	   /v - Indicates verbose mode</span><br><span class="line">	   /q - Indicates Quiet mode</span><br><span class="line">	   /ds - Indicates Current Question Value can be <span class="built_in">set</span> as BIOS Standard Default Value</span><br><span class="line">	   /dm - Indicates Current Question Value can be <span class="built_in">set</span> as BIOS Manufacturing Default Value</span><br><span class="line">	   /b  - Enables <span class="built_in">export</span>/import of boot order controls</span><br><span class="line">	   /r  - Indicates restriction of migration mode</span><br><span class="line">	   /lang - Enables mapping language mode</span><br><span class="line">	   /sp - Enables Expression Evaluation <span class="keyword">for</span> Suppressif Opcode</span><br><span class="line">	   /g - Enables Expression Evaluation <span class="keyword">for</span> Grayoutif Opcode</span><br><span class="line">	   /a - Enables Setup Question having Empty or Blank names to be exported</span><br><span class="line">	   /cpwd - To validate the admin password and unlock the protected variables update</span><br><span class="line">	   /apwd - To <span class="built_in">set</span> new admin password</span><br><span class="line">	   /upwd - To <span class="built_in">set</span> new user Password </span><br><span class="line">	   /cpwds - To validate the admin password of <span class="built_in">type</span> Scan Code and unlock the protected variables update</span><br><span class="line">	   /apwds - To <span class="built_in">set</span> new admin password of <span class="built_in">type</span> Scan Code</span><br><span class="line">	   /upwds - To <span class="built_in">set</span> new user Password of <span class="built_in">type</span> Scan Code</span><br><span class="line">	   /cpwde - To validate the admin password of <span class="built_in">type</span> EFI Key and unlock the protected variables update</span><br><span class="line">	   /apwde - To <span class="built_in">set</span> new admin password of <span class="built_in">type</span> EFI Key</span><br><span class="line">	   /upwde - To <span class="built_in">set</span> new user Password of <span class="built_in">type</span> EFI Key</span><br><span class="line">	   /sd - Export duplicate questions <span class="keyword">in</span> new file </span><br><span class="line">	   /ms - Indicates Map String of the Setup Question</span><br><span class="line">	   /qv - Indicates Question Value to be <span class="built_in">set</span> <span class="keyword">for</span> the Setup Question</span><br><span class="line">	   /bt - Indicates the device <span class="built_in">type</span> <span class="keyword">for</span> legacy boot device</span><br><span class="line">	   /p - Indicates PLDM File</span><br><span class="line">	   /ce - Comment out suppress and gray out controls <span class="keyword">in</span> script file</span><br><span class="line">	   /hb - Hides tool information banner</span><br><span class="line">	   /d - Skip checking <span class="keyword">for</span> AptioV BIOS and behave normally</span><br><span class="line">	   /ndef - Export only those Questions whose Value is different from the Default</span><br><span class="line"></span><br><span class="line">Driver Options:</span><br><span class="line">	SCELNX_64 /MAKEDRV</span><br><span class="line">	/MAKEDRV - Make AFULNX driver with user defined environment</span><br><span class="line">	 	Example: /MAKEDRV KERNEL=/lib/modules/$(uname -r)/build</span><br><span class="line"></span><br><span class="line">	SCELNX_64 /GENDRV OUTPUT=./driver</span><br><span class="line">	/GENDRV - Generate AFULNX driver <span class="built_in">source</span> files to specific directory.</span><br><span class="line">		[Option 1]: Specific kernel <span class="built_in">source</span> <span class="string">&#x27;KERNEL=XXXX&#x27;</span></span><br><span class="line">		same as the /MAKEDRV</span><br><span class="line">		[Option 2]: Specific output directory <span class="string">&#x27;OUTPUT=XXXX&#x27;</span></span><br><span class="line">		Example: /GENDRV KERNEL=/usr/src OUTPUT=./driver</span><br></pre></td></tr></table></figure>
+<p>根据上述命令帮助可以得知，</p>
+<ul>
+<li>使用<code>SCELNX_64 /o /s &lt;NVRAM Script File&gt;</code>方式可以得出全部配置，</li>
+<li>使用<code>SCELNX_64 /i /s &lt;NVRAM Script File&gt;</code>方式可以刷新全部配置，</li>
+<li>使用<code>SCELNX_64 /o [/lang &lt;Lang Code&gt;] /ms &lt;question map string&gt;</code>方式可以单独得出某项配置，</li>
+<li>使用<code>SCELNX_64 /i [/lang &lt;Lang Code&gt;] /ms &lt;question map string&gt; /qv &lt;question value&gt;</code>方式可以单独刷新某项配置，<br>那么问题又来了，<code>&lt;question map string&gt;</code>和<code>&lt;question value&gt;</code>如何确定？</li>
+</ul>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h3 id="导出所有配置"><a href="#导出所有配置" class="headerlink" title="导出所有配置"></a>导出所有配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/bin/SCELNX_64 /o /s /tmp/nvram_script.txt</span><br><span class="line"><span class="comment"># ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># |                Copyright (c)2017 American Megatrends, Inc.               |</span></span><br><span class="line"><span class="comment"># |                      AMISCE Utility. Ver 5.03.1106                       |</span></span><br><span class="line"><span class="comment"># ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># WARNING: Duplicate questions found. Only one question will be enabled in the script.</span></span><br><span class="line"><span class="comment"># Script file exported successfully.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="导入所有配置"><a href="#导入所有配置" class="headerlink" title="导入所有配置"></a>导入所有配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/bin/SCELNX_64 /i /s /tmp/nvram_script.txt</span><br><span class="line">/bin/SCELNX_64 /i /s /tmp/nvram_script.txt /lang en-US</span><br><span class="line">/bin/SCELNX_64 /i /s /tmp/nvram_script.txt /lang x-AMI</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询和设置Numa"><a href="#查询和设置Numa" class="headerlink" title="查询和设置Numa"></a>查询和设置Numa</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询Numa</span></span><br><span class="line">/bin/SCELNX_64 /o /lang en-US /q /d /hb /ms <span class="string">&quot;NUMA&quot;</span></span><br><span class="line">Options =*[00]Disabled</span><br><span class="line">         [01]Enabled</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用Numa</span></span><br><span class="line">/bin/SCELNX_64 /i /lang en-US /q /d /hb /ms <span class="string">&quot;NUMA&quot;</span> /qv 0x01</span><br></pre></td></tr></table></figure>
+<h3 id="查询和设置Hyper-Threading"><a href="#查询和设置Hyper-Threading" class="headerlink" title="查询和设置Hyper-Threading"></a>查询和设置Hyper-Threading</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询HT</span></span><br><span class="line">/bin/SCELNX_64 /o /lang en-US /q /d /hb /ms <span class="string">&quot;Hyper-Threading&quot;</span></span><br><span class="line">Options =*[01]Disabled</span><br><span class="line">         [00]Enabled</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭HT</span></span><br><span class="line">/bin/SCELNX_64 /i /lang en-US /q /d /hb /ms <span class="string">&quot;Hyper-Threading&quot;</span> /qv 0x00</span><br></pre></td></tr></table></figure>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>Insyde BIOS Configuration的名称或存在与否与架构有关?</li>
+<li>AMI BIOS的某些项重复，无法修改如何解决?</li>
+<li><code>SCELNX_64 /i /s &lt;NVRAM Script File&gt;</code>方式存在错误如何解决?</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://huataihuang.gitbooks.io/cloud-atlas/content/server/firmware/modify_bios_through_linux_command.html">通过Linux命令行修改服务器BIOS配置</a><br><a target="_blank" rel="noopener" href="http://support.huawei.com/enterprise/zh/doc/EDOC1000061912?section=j019">修改华为服务器BIOS配置项</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/hw/conf-bios.html" title="如何通过命令行配置BIOS?">https://travonf.github.io/blog/hw/conf-bios.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/BIOS/" rel="tag"># BIOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/sw/nginx.html" rel="prev" title="BAT都在用的Nginx到底是啥？">
+                  <i class="fa fa-chevron-left"></i> BAT都在用的Nginx到底是啥？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/hw/conf-raid.html" rel="next" title="如何通过命令行配置RAID?">
+                  如何通过命令行配置RAID? <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

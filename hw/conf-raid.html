@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="概述 LSI公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID控制器、SSD控制器、ReadChannel、Preamp、Axxia网络处理器和定制ASIC等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何通过命令行配置RAID?">
+<meta property="og:url" content="https://travonf.github.io/blog/hw/conf-raid.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="概述 LSI公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID控制器、SSD控制器、ReadChannel、Preamp、Axxia网络处理器和定制ASIC等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-05T15:15:46.000Z">
+<meta property="article:modified_time" content="2018-12-05T15:15:46.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="RAID">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/hw/conf-raid.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何通过命令行配置RAID? | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Drive-Group-and-Virtual-Drive"><span class="nav-number">1.1.</span> <span class="nav-text">Drive Group and Virtual Drive</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%8F%8A%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">检测及修复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%8B%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">型号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#storcli64"><span class="nav-number">2.3.1.</span> <span class="nav-text">storcli64</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5RAID"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">检查RAID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4RAID"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">创建和删除RAID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AERAID%E7%BB%84%E7%9A%84Cache%E8%AF%BB%E5%86%99%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">设置RAID组的Cache读写属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#disk-cache"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">disk cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8rebuild"><span class="nav-number">2.3.1.5.</span> <span class="nav-text">自动rebuild</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="nav-number">2.3.1.6.</span> <span class="nav-text">设置启动项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sas2ircu"><span class="nav-number">2.3.2.</span> <span class="nav-text">sas2ircu</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%AE%9ARAID%E7%BB%84%E4%BD%9C%E4%B8%BA%E7%AC%AC%E4%B8%80%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">设置指定RAID组作为第一启动项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%AE%9A%E5%8D%95%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%AC%AC%E4%B8%80%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">设置指定单盘作为第一启动项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sas3ircu"><span class="nav-number">2.3.3.</span> <span class="nav-text">sas3ircu</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/hw/conf-raid.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何通过命令行配置RAID?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-05 23:15:46" itemprop="dateCreated datePublished" datetime="2018-12-05T23:15:46+08:00">2018-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>LSI公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID控制器、SSD控制器、ReadChannel、Preamp、Axxia网络处理器和定制ASIC等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。<br>在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、联想、宝德、浪潮、中科曙光等服务器都使用LSI品牌的阵列卡作为服务器存储控制器，而且其性能其他品牌RAID控制器无与伦比，可见LSI阵列卡的优越性。<br>LSI阵列卡默认采用基于图形化的BIOS界面来管理，服务器在开机自检界面提示按CTRL+C、CTRL+R、CTRL+H等组合键进入，可使用鼠标或键盘来完成RAID的配置等，这种比较适合少量机器手工配置的场景。如果大量的服务器RAID的配置任采用这种方法就显得力不从心了，不过实际上LSI官方推出了基于命令行的管理软件来实现对RAID控制卡的配置与管理，在操作系统内安装软件，可直接对RAID控制卡的管理，同时也可使用带驱动的Linux内核+脚本即可实现大量服务器批量化自动配置RAID来提高管理效率。<br>目前LSI官方发布的基于SAS/SATA控制器RAID控制卡产品型号（芯片）有：LSI1064、LSI1086、LSI1078、LSI2008、LSI2208、lSI2308、LSI3008、LSI3108等。<br>一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli、SAS2IRCU等工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器则使用其特有的hpacucli工具来管理。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="Drive-Group-and-Virtual-Drive"><a href="#Drive-Group-and-Virtual-Drive" class="headerlink" title="Drive Group and Virtual Drive"></a>Drive Group and Virtual Drive</h2><p>With the increasing traffic volume of modern data centers, more data needs to run on a single server. When a single drive is insufficient to support system services in terms of capacity and security, multiple drives need to be combined to serve as a visible drive for external entities to meet service requirements. A drive group is a group of physical drives combined as a whole for external entities. Drive groups are the basis for virtual drives.</p>
+<p>A virtual drive is a continuous data storage unit divided from a drive group. A virtual drive can be considered an independent drive. Thanks to certain configuration, a virtual drive can provide higher capacity, security, and data redundancy than a physical drive.</p>
+<p>A virtual drive can be:<br>• A complete drive group.<br>• Multiple complete drive groups.<br>• Part of a drive group.<br>• Parts of multiple drive groups (a part is divided from every drive group, and these parts form a virtual drive).</p>
+<p>Related conventions:<br>• A drive group is usually specified as <strong>Drive Group</strong> (DG for short).<br>• A virtual drive is usually specified as <strong>Virtual Drive</strong>, <strong>Virtual Disk</strong> (VD for short), <strong>Volume</strong>, <strong>Array</strong>, and <strong>Logical Device</strong> (LD for short).</p>
+<p>关于DG和VD的区别可以看看上面的解释。</p>
+<h1 id="检测及修复"><a href="#检测及修复" class="headerlink" title="检测及修复"></a>检测及修复</h1><h2 id="型号"><a href="#型号" class="headerlink" title="型号"></a>型号</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查存储控制器型号</span></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 1078&quot;</span></span><br><span class="line">01:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 1078 (rev 04)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 2108&quot;</span></span><br><span class="line">84:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 2108 [Liberator] (rev 05)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 2208&quot;</span></span><br><span class="line">01:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 2208 [Thunderbolt] (rev 05)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;Serial Attached SCSI controller: LSI Logic / Symbios Logic SAS2308&quot;</span></span><br><span class="line">01:00.0 Serial Attached SCSI controller: LSI Logic / Symbios Logic SAS2308 PCI-Express Fusion-MPT</span><br><span class="line"> SAS-2 (rev 05)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS-3 3108&quot;</span></span><br><span class="line">03:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS-3 3108 [Invader] (rev 02)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: Hewlett-Packard Company&quot;</span></span><br><span class="line">06:00.0 RAID bus controller: Hewlett-Packard Company Smart Array Controller (rev 04)</span><br><span class="line"></span><br><span class="line">03:00.0 RAID bus controller: Hewlett-Packard Company Smart Array Gen8 Controllers (rev 01)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: Adaptec&quot;</span></span><br><span class="line">01:00.0 RAID bus controller: Adaptec AAC-RAID (rev 09)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lspci | grep &quot;RAID bus controller: 3ware Inc&quot;</span></span><br><span class="line">08:00.0 RAID bus controller: 3ware Inc 9690SA SAS/SATA-II RAID PCIe (rev 01)</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>不同的RAID卡，厂商或型号不同，对应的命令也不同，以下是目前已知的检查命令：</p>
+<table>
+<thead>
+<tr>
+<th>Corp</th>
+<th>Model</th>
+<th>Cmd</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LSI</td>
+<td>SAS2208</td>
+<td>storcli64</td>
+</tr>
+<tr>
+<td>LSI</td>
+<td>SAS2308</td>
+<td>sas2ircu</td>
+</tr>
+<tr>
+<td>LSI</td>
+<td>SAS3008</td>
+<td>sas3ircu</td>
+</tr>
+<tr>
+<td>LSI</td>
+<td>SAS3108</td>
+<td>storcli64</td>
+</tr>
+<tr>
+<td>LSI</td>
+<td>SAS3316</td>
+<td>storcli64</td>
+</tr>
+</tbody></table>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="storcli64"><a href="#storcli64" class="headerlink" title="storcli64"></a>storcli64</h3><blockquote>
+<p>storcli已经基本代替了megacli，官方推荐使用storcli管理RAID</p>
+</blockquote>
+<h4 id="检查RAID"><a href="#检查RAID" class="headerlink" title="检查RAID"></a>检查RAID</h4><p>通过命令storcli64 /call show可以得到控制器信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># storcli64 /call show</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = None</span><br><span class="line"></span><br><span class="line">Product Name = SAS2208</span><br><span class="line">Serial Number = FW-AB2M2K4EXVAWC</span><br><span class="line">SAS Address =  5101b5442bcc7000</span><br><span class="line">Mfg. Date = 00/00/00</span><br><span class="line">System Time = 08/22/2018 15:29:27</span><br><span class="line">Controller Time = 08/22/2018 15:29:47</span><br><span class="line">FW Package Build = 23.28.0-0023</span><br><span class="line">BIOS Version = 5.46.02.2_4.16.08.00_0x06060A05</span><br><span class="line">FW Version = 3.400.95-4061</span><br><span class="line">Driver Name = megaraid_sas</span><br><span class="line">Driver Version = 06.810.08.00</span><br><span class="line">Controller Bus Type = N/A</span><br><span class="line">PCI Slot = N/A</span><br><span class="line">PCI Bus Number = 1</span><br><span class="line">PCI Device Number = 0</span><br><span class="line">PCI Function Number = 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Drive Groups = 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Drive Groups信息可以由以下命令单独列出</span></span><br><span class="line"><span class="comment"># storcli64 /call /dall show</span></span><br><span class="line"></span><br><span class="line">TOPOLOGY :</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">DG Arr Row EID:Slot DID Type  State BT       Size PDC  PI SED DS3  FSpace</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line"> 0 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 0 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 0 0   0   0:0      1   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 1 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 1 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 1 0   0   0:1      4   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 2 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 2 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 2 0   0   0:2      3   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 3 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 3 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 3 0   0   0:3      8   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 -   -   -        -   RAID5 Optl  N    5.085 TB dflt N  N   none N</span><br><span class="line"> 4 0   -   -        -   RAID5 Optl  N    5.085 TB dflt N  N   none N</span><br><span class="line"> 4 0   0   0:4      2   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   1   0:5      7   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   2   0:6      9   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   3   0:7      11  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   4   0:8      6   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   5   0:9      5   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   6   0:10     12  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   7   0:11     10  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">DG=Disk Group Index|Arr=Array Index|Row=Row Index|EID=Enclosure Device ID</span><br><span class="line">DID=Device ID|Type=Drive Type|Onln=Online|Rbld=Rebuild|Dgrd=Degraded</span><br><span class="line">Pdgd=Partially degraded|Offln=Offline|BT=Background Task Active</span><br><span class="line">PDC=PD Cache|PI=Protection Info|SED=Self Encrypting Drive|Frgn=Foreign</span><br><span class="line">DS3=Dimmer Switch 3|dflt=Default|Msng=Missing|FSpace=Free Space Present</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个地方的PDC就是disk cache, 可选On\Off\Default三种选项, 对应为enbl\dsbl\dflt</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Virtual Drives = 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Virtual Drives信息可以由以下命令单独列出</span></span><br><span class="line"><span class="comment"># storcli64 /call /vall show</span></span><br><span class="line"></span><br><span class="line">VD LIST :</span><br><span class="line">=======</span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------</span><br><span class="line">DG/VD TYPE  State Access Consist Cache sCC       Size Name</span><br><span class="line">---------------------------------------------------------------</span><br><span class="line">0/0   RAID0 Optl  RW     Yes     NRWBD -   744.125 GB</span><br><span class="line">1/1   RAID0 Optl  RW     Yes     NRWBD -   744.125 GB</span><br><span class="line">2/2   RAID0 Optl  RW     Yes     NRWBD -   744.125 GB</span><br><span class="line">3/3   RAID0 Optl  RW     Yes     NRWBD -   744.125 GB</span><br><span class="line">4/4   RAID5 Optl  RW     Yes     RaWBD -     5.085 TB 6gRcrbya</span><br><span class="line">---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Cac=CacheCade|Rec=Recovery|OfLn=OffLine|Pdgd=Partially Degraded|dgrd=Degraded</span><br><span class="line">Optl=Optimal|RO=Read Only|RW=Read Write|B=Blocked|Consist=Consistent|</span><br><span class="line">Ra=Read Ahead Adaptive|R=Read Ahead Always|NR=No Read Ahead|WB=WriteBack|</span><br><span class="line">AWB=Always WriteBack|WT=WriteThrough|C=Cached IO|D=Direct IO|sCC=Scheduled</span><br><span class="line">Check Consistency</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以看出有5个VD，VD 0-3为RAID0，State为Optimal，Access Policy为RW，</span></span><br><span class="line"><span class="comment"># Read Policy为NR，Write Policy为WB，Cache Policy为Direct IO</span></span><br><span class="line"><span class="comment"># VD4做了RAID5，Read Policy为Ra，Write Policy为WB，Cache Policy为Direct IO</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>设置项</strong></th>
+<th>可选值</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>accesspolicy</strong></td>
+<td>RW</td>
+<td>RO</td>
+<td>Blocked</td>
+<td>RmvBlkd</td>
+</tr>
+<tr>
+<td><strong>rdcache</strong></td>
+<td>RA</td>
+<td>NoRA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>wrcache</strong></td>
+<td>WT</td>
+<td>WB</td>
+<td>AWB</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>pdcache</strong></td>
+<td>On</td>
+<td>Off</td>
+<td>Default</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>iopolicy</strong></td>
+<td>Cached</td>
+<td>Direct</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Physical Drives = 12</span><br><span class="line"></span><br><span class="line"><span class="comment"># Physical Drives信息可以由以下命令单独列出</span></span><br><span class="line"><span class="comment"># storcli64 /call /eall /sall show</span></span><br><span class="line"></span><br><span class="line">PD LIST :</span><br><span class="line">=======</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------------</span><br><span class="line">EID:Slt DID State DG       Size Intf Med SED PI SeSz Model               Sp</span><br><span class="line">----------------------------------------------------------------------------</span><br><span class="line">0:0       1 Onln   0 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:1       4 Onln   1 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:2       3 Onln   2 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:3       8 Onln   3 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:4       2 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:5       7 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:6       9 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:7      11 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:8       6 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:9       5 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:10     12 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">0:11     10 Onln   4 744.125 GB SATA SSD N   N  512B INTEL SSDSC2BB800G6 U</span><br><span class="line">----------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup</span><br><span class="line">DHS-Dedicated Hot Spare|UGood-Unconfigured Good|GHS-Global Hotspare</span><br><span class="line">UBad-Unconfigured Bad|Onln-Online|Offln-Offline|Intf-Interface</span><br><span class="line">Med-Media Type|SED-Self Encryptive Drive|PI-Protection Info</span><br><span class="line">SeSz-Sector Size|Sp-Spun|U-Up|D-Down|T-Transition|F-Foreign</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># BBU信息可以由以下命令单独列出</span></span><br><span class="line"><span class="comment"># storcli64 /call /bbu show</span></span><br><span class="line"></span><br><span class="line">BBU_Info :</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------------</span><br><span class="line">Model  State   RetentionTime Temp Mode MfgDate    Next Learn</span><br><span class="line">-----------------------------------------------------------------------</span><br><span class="line">CVPM02 Optimal 0 hour(s)     21C  0    2015/11/14 2018/08/23  10:48:12</span><br><span class="line">-----------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="创建和删除RAID"><a href="#创建和删除RAID" class="headerlink" title="创建和删除RAID"></a>创建和删除RAID</h4><p><strong>命令功能</strong><br>创建、删除RAID。</p>
+<p><strong>命令格式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storcli64 /c`controller_id` add vd r`level` size=`capacity` drives=`enclosure_id`:`startid-endid`</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storcli64 /c`controller_id`/v`raid_id` del</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>controller_id</td>
+<td>RAID卡的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>level</td>
+<td>要配置的RAID级别</td>
+<td>–</td>
+</tr>
+<tr>
+<td>capacity</td>
+<td>要配置的RAID容量</td>
+<td>–</td>
+</tr>
+<tr>
+<td>enclosure_id</td>
+<td>硬盘所在Enclosure的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>startid-endid</td>
+<td>要加入RAID的硬盘的起始和结束ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>raid_id</td>
+<td>要删除的RAID的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td><strong>使用指南</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>无</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>使用实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建RAID 0</span></span><br><span class="line"></span><br><span class="line">domino:~<span class="comment"># ./storcli64 /c0 add vd r0 size=100GB drives=252:0-3</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = Add VD Succeeded</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除RAID</span></span><br><span class="line"></span><br><span class="line">domino:~<span class="comment"># ./storcli64 /c0/v0 del</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = Delete VD Succeeded</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="设置RAID组的Cache读写属性"><a href="#设置RAID组的Cache读写属性" class="headerlink" title="设置RAID组的Cache读写属性"></a>设置RAID组的Cache读写属性</h4><p><strong>命令功能</strong><br>设置RAID组的Cache读写属性。</p>
+<p><strong>命令格式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storcli64 /c`controller_id`/v`raid_id` <span class="built_in">set</span> wrcache=`mode`</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>controller_id</td>
+<td>RAID卡的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>raid_id</td>
+<td>待设置的RAID的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>Cache读写模式</td>
+<td>wt：当磁盘子系统接收到所有传输数据后，控制器将给主机返回数据传输完成信号。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>wb：控制器Cache收到所有的传输数据后，将给主机返回数据传输完成信号。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>awb：在RAID卡无电容或电容损坏的情况下，强制使用“wb”模式。</td>
+</tr>
+</tbody></table>
+<p><strong>使用指南</strong><br>无</p>
+<p><strong>使用实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置Cache读写模式为“wt”。</span></span><br><span class="line"></span><br><span class="line">domino:~<span class="comment"># ./storcli64 /c0/v0 set wrcache=wt</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = None</span><br><span class="line">Details Status :</span><br><span class="line">==============</span><br><span class="line">---------------------------------------</span><br><span class="line">VD Property Value Status  ErrCd ErrMsg</span><br><span class="line">---------------------------------------</span><br><span class="line"> 0 wrCache  WT    Success     0 -</span><br><span class="line">---------------------------------------</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="disk-cache"><a href="#disk-cache" class="headerlink" title="disk cache"></a>disk cache</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看disk cache信息</span></span><br><span class="line"><span class="comment"># storcli64 /c0 /dall show</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = Show Diskgroup Succeeded</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TOPOLOGY :</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">DG Arr Row EID:Slot DID Type  State BT       Size PDC  PI SED DS3  FSpace</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line"> 0 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 0 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 0 0   0   0:0      1   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 1 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 1 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 1 0   0   0:1      4   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 2 -   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 2 0   -   -        -   RAID0 Optl  N  744.125 GB dflt N  N   none N</span><br><span class="line"> 2 0   0   0:2      3   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 3 -   -   -        -   RAID0 Optl  N  744.125 GB dsbl N  N   none N</span><br><span class="line"> 3 0   -   -        -   RAID0 Optl  N  744.125 GB dsbl N  N   none N</span><br><span class="line"> 3 0   0   0:3      8   DRIVE Onln  N  744.125 GB dsbl N  N   none -</span><br><span class="line"> 4 -   -   -        -   RAID5 Optl  N    5.085 TB dflt N  N   none N</span><br><span class="line"> 4 0   -   -        -   RAID5 Optl  N    5.085 TB dflt N  N   none N</span><br><span class="line"> 4 0   0   0:4      2   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   1   0:5      7   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   2   0:6      9   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   3   0:7      11  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   4   0:8      6   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   5   0:9      5   DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   6   0:10     12  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line"> 4 0   7   0:11     10  DRIVE Onln  N  744.125 GB dflt N  N   none -</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">DG=Disk Group Index|Arr=Array Index|Row=Row Index|EID=Enclosure Device ID</span><br><span class="line">DID=Device ID|Type=Drive Type|Onln=Online|Rbld=Rebuild|Dgrd=Degraded</span><br><span class="line">Pdgd=Partially degraded|Offln=Offline|BT=Background Task Active</span><br><span class="line">PDC=PD Cache|PI=Protection Info|SED=Self Encrypting Drive|Frgn=Foreign</span><br><span class="line">DS3=Dimmer Switch 3|dflt=Default|Msng=Missing|FSpace=Free Space Present</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面的PDC就是disk cache, 可选On\Off\Default三种选项, 对应为enbl\dsbl\dflt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设定pdcache</span></span><br><span class="line">storcli /c`x`/v`x` <span class="built_in">set</span> pdcache=`On`|`Off`|`Default`</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="自动rebuild"><a href="#自动rebuild" class="headerlink" title="自动rebuild"></a>自动rebuild</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用如下命令检查auto rebuild的信息</span></span><br><span class="line"><span class="comment"># storcli64 /call show autorebuild</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = None</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Controller Properties :</span><br><span class="line">=====================</span><br><span class="line"></span><br><span class="line">------------------</span><br><span class="line">Ctrl_Prop   Value</span><br><span class="line">------------------</span><br><span class="line">AutoRebuild OFF</span><br><span class="line">------------------</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启/关闭auto rebuild</span></span><br><span class="line">storcli /c`x` <span class="built_in">set</span> autorebuild=&lt;`on`|`off`&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="设置启动项"><a href="#设置启动项" class="headerlink" title="设置启动项"></a>设置启动项</h4><p><strong>命令功能</strong><br>设置虚拟磁盘或物理硬盘为启动项。</p>
+<p><strong>命令格式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">storcli64 /c`controller_id`/v`vd_id` <span class="built_in">set</span> bootdrive=on</span><br><span class="line">storcli64 /c`controller_id`/e`enclosure_id`/s`slot_id` <span class="built_in">set</span> bootdrive=on</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>controller_id</td>
+<td>RAID卡的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>vd_id</td>
+<td>待设置的虚拟磁盘的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>enclosure_id</td>
+<td>硬盘所在Enclosure的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>slot_id</td>
+<td>硬盘槽位号</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<p><strong>使用指南</strong><br>无</p>
+<p><strong>使用实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置VD0为启动项</span></span><br><span class="line"></span><br><span class="line">domino:~<span class="comment"># ./storcli64 /c0/v0 set bootdrive=on</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = Noe</span><br><span class="line">Detailed Status :</span><br><span class="line">===============</span><br><span class="line">----------------------------------------</span><br><span class="line">VD Property   Value Staus  ErrCd ErrMsg</span><br><span class="line">----------------------------------------</span><br><span class="line"> 0 Boot Drive On    Success    0 -</span><br><span class="line">----------------------------------------</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置slot 7硬盘为启动项</span></span><br><span class="line"></span><br><span class="line">domino:~<span class="comment"># ./storcli64 /c0/e252/s7 set bootdrive=on</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = Noe</span><br><span class="line">Controller Properties :</span><br><span class="line">=====================</span><br><span class="line">-------------------</span><br><span class="line">Ctrl_Prop Value</span><br><span class="line">-------------------</span><br><span class="line">BootDrive PD:252_7</span><br><span class="line">-------------------</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出bootdrive信息</span></span><br><span class="line">storcli /cx show bootdrive</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定某组为bootdrive</span></span><br><span class="line">storcli /cx/vx <span class="built_in">set</span> bootdrive=&lt;on|off&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定某盘为bootdrive</span></span><br><span class="line">storcli /cx[/ex]/sx <span class="built_in">set</span> bootdrive=&lt;on|off&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查启动盘</span></span><br><span class="line"><span class="comment"># storcli64 /c0 show bootdrive</span></span><br><span class="line">Controller = 0</span><br><span class="line">Status = Success</span><br><span class="line">Description = None</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Controller Properties :</span><br><span class="line">=====================</span><br><span class="line"></span><br><span class="line">----------------</span><br><span class="line">Ctrl_Prop Value</span><br><span class="line">----------------</span><br><span class="line">BootDrive VD:0</span><br><span class="line">----------------</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="sas2ircu"><a href="#sas2ircu" class="headerlink" title="sas2ircu"></a>sas2ircu</h3><h4 id="设置指定RAID组作为第一启动项"><a href="#设置指定RAID组作为第一启动项" class="headerlink" title="设置指定RAID组作为第一启动项"></a>设置指定RAID组作为第一启动项</h4><p><strong>命令功能</strong><br>设置指定RAID组作为第一启动项。</p>
+<p><strong>命令格式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sas2ircu `controller_id` bootir `volume_id`</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>controller_id</td>
+<td>RAID卡的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>volume_id</td>
+<td>待设置为第一启动项的RAID组ID</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<p><strong>使用指南</strong><br>无</p>
+<p><strong>使用实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置指定RAID组作为第一启动项。</span></span><br><span class="line">domino:~<span class="comment"># ./sas2ircu 0 bootir 322</span></span><br><span class="line">Avago Technologies SAS2 IR Configuration Utility.</span><br><span class="line">Version 13.00.00.00 (2016.03.08)</span><br><span class="line">Copyright (c) 2009-2016 Avago Technologies. All rights reserved.</span><br><span class="line"></span><br><span class="line">SAS2IRCU: Command bootir Completed Successfully.</span><br><span class="line">SAS2IRCU: Utility Completed Successfully.</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="设置指定单盘作为第一启动项"><a href="#设置指定单盘作为第一启动项" class="headerlink" title="设置指定单盘作为第一启动项"></a>设置指定单盘作为第一启动项</h4><p><strong>命令功能</strong><br>设置指定单盘作为第一启动项。</p>
+<p><strong>命令格式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sas2ircu `controller_id` bootencl `enclosure_id`:`slot_id`</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>controller_id</td>
+<td>RAID卡的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>enclosure_id</td>
+<td>硬盘所在Enclosure的ID</td>
+<td>–</td>
+</tr>
+<tr>
+<td>slot_id</td>
+<td>硬盘槽位号</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<p><strong>使用指南</strong><br>    无</p>
+<p><strong>使用实例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置指定单盘作为第一启动项</span></span><br><span class="line">domino:~<span class="comment"># ./sas2ircu 0 bootencl 1:4</span></span><br><span class="line">Avago Technologies SAS2 IR Configuration Utility.</span><br><span class="line">Version 13.00.00.00 (2016.03.08)</span><br><span class="line">Copyright (c) 2009-2016 Avago Technologies. All rights reserved.</span><br><span class="line"></span><br><span class="line">SAS2IRCU: Command BOOTENCL Completed Successfully.</span><br><span class="line">SAS2IRCU: Utility Completed Successfully.</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="sas3ircu"><a href="#sas3ircu" class="headerlink" title="sas3ircu"></a>sas3ircu</h3><p>用法同sas2ircu</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>辨别RAID厂商、型号是个大问题，当前采用严格匹配方式，未适配的型号统统忽略了，比如说下面这些：<br>58:00.0 RAID bus controller: LSI Logic / Symbios Logic Device 0014 (rev 01)</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>StorCLI Reference Manual - Broadcom<br>Disk Controller parameters – Best practice<br>未完待续…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/hw/conf-raid.html" title="如何通过命令行配置RAID?">https://travonf.github.io/blog/hw/conf-raid.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/RAID/" rel="tag"># RAID</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/hw/conf-bios.html" rel="prev" title="如何通过命令行配置BIOS?">
+                  <i class="fa fa-chevron-left"></i> 如何通过命令行配置BIOS?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/dev/javascript/basic.html" rel="next" title="JavaScript基础">
+                  JavaScript基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
