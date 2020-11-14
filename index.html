@@ -203,20 +203,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -863,7 +863,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -886,52 +886,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="编程原则"><a href="#编程原则" class="headerlink" title="编程原则"></a>编程原则</h2><p>来源：<a target="_blank" rel="noopener" href="https://www.artima.com/weblogs/viewpost.jsp?thread=331531">https://www.artima.com/weblogs/viewpost.jsp?thread=331531</a></p>
-<h3 id="DRY-don’t-repeat-yourself-不要自我重复"><a href="#DRY-don’t-repeat-yourself-不要自我重复" class="headerlink" title="DRY - don’t repeat yourself - 不要自我重复"></a>DRY - don’t repeat yourself - 不要自我重复</h3><p>一旦程序里开始有重复现象的出现(例如很长的表达式、一大堆的语句，但都是为了表达相同的概念)，你就需要对代码进行一次新的提炼，抽象</p>
-<h3 id="Abstraction-Principle-提炼原则"><a href="#Abstraction-Principle-提炼原则" class="headerlink" title="Abstraction Principle - 提炼原则"></a>Abstraction Principle - 提炼原则</h3><p>程序中任何一段具有功能性的代码在源代码文件中应该唯一的存在</p>
-<h3 id="KISS-Keep-it-simple-stupid"><a href="#KISS-Keep-it-simple-stupid" class="headerlink" title="KISS - Keep it simple, stupid!"></a>KISS - Keep it simple, stupid!</h3><p>保持简单</p>
-<p>简单化(避免复杂)永远都应该是你的头等目标。简单的程序让你写起来容易，产生的bug更少，更容易维护修改。</p>
-<h3 id="YAGNI-ya-ain’t-gonna-need-it"><a href="#YAGNI-ya-ain’t-gonna-need-it" class="headerlink" title="YAGNI - ya ain’t gonna need it"></a>YAGNI - ya ain’t gonna need it</h3><p>你不会用到它的</p>
-<p>除非你真正需要用到它，否则不要轻易加上那些乱七八糟用不到的功能。表示程序员不应为目前还不需要的功能编写代码</p>
-<h3 id="Do-the-simplest-thing-that-could-possibly-work"><a href="#Do-the-simplest-thing-that-could-possibly-work" class="headerlink" title="Do the simplest thing that could possibly work"></a>Do the simplest thing that could possibly work</h3><p>用最简单的方法让程序跑起来</p>
-<p>在开发时有个非常好的问题你需要问问自己，“怎样才能最简单的让程序跑起来？”这能帮助我们在设计时让程序保持简单。</p>
-<h3 id="Don’t-make-me-think"><a href="#Don’t-make-me-think" class="headerlink" title="Don’t make me think"></a>Don’t make me think</h3><p>不要让我动脑子</p>
-<p>这实际上是Steve Krug 关于web界面操作的一本书的书名，但也适用于编程。</p>
-<p>主旨是，程序代码应该让人们花最小的努力就能读懂和理解。如果一段程序对于阅读者来说需要花费太多的努力才能理解，那它很可能需要进一步简化。</p>
-<h3 id="Open-Closed-Principle"><a href="#Open-Closed-Principle" class="headerlink" title="Open/Closed Principle"></a>Open/Closed Principle</h3><p>开放/封闭原则</p>
-<p>程序里的实体项(类，模块，函数等)应该对扩展行为开放，对修改行为关闭。换句话说，不要写允许别人修改的类，应该写能让人们扩展的类</p>
-<h3 id="Write-Code-for-the-Maintainer"><a href="#Write-Code-for-the-Maintainer" class="headerlink" title="Write Code for the Maintainer"></a>Write Code for the Maintainer</h3><p>为维护者写程序</p>
-<p>任何值得你编写的程序在将来都是值得你去维护的，也许由你维护，也许由他人。</p>
-<p>在将来，当你不得不维护这些程序时，你对这些代码的记忆会基本上跟一个陌生人一样，所以，你最好还是当成一直在给别人写程序。</p>
-<p>一个有助于你记住这个原则的办法是“写程序时时刻记着，这个将来要维护你写的程序的人是一个有严重暴力倾向，并且知道你住在哪里的精神变态者”。</p>
-<h3 id="POLS-Principle-of-least-surprise"><a href="#POLS-Principle-of-least-surprise" class="headerlink" title="POLS - Principle of least surprise"></a>POLS - Principle of least surprise</h3><p>最小意外原则</p>
-<p>最少意外原则通常是使用在用户界面设计上，但这个原则同样适用于编写程序。</p>
-<p>程序代码应尽可能的不要让阅读者感到意外。</p>
-<p>也就是说应该遵循编码规范和常见习惯，按照公认的习惯方式进行组织和命名，不符常规的编程动作应该尽可能的避免。</p>
-<h3 id="Single-Responsibility-Principle"><a href="#Single-Responsibility-Principle" class="headerlink" title="Single Responsibility Principle"></a>Single Responsibility Principle</h3><p>单一职责原则</p>
-<p>一个代码组件(例如类或函数)应该只执行单一的预设的任务。</p>
-<h3 id="loose-coupling-high-cohesion"><a href="#loose-coupling-high-cohesion" class="headerlink" title="loose coupling high cohesion"></a>loose coupling high cohesion</h3><p>高内聚低耦合</p>
-<h3 id="Minimize-Coupling"><a href="#Minimize-Coupling" class="headerlink" title="Minimize Coupling"></a>Minimize Coupling</h3><p>最小化耦合性</p>
-<p>一个代码片段(代码块，函数，类等)应该最小化它对其它代码的依赖。这个目标通过尽可能少的使用共享变量来实现。</p>
-<p>“低耦合是一个计算机系统结构合理、设计优秀的标志，把它与高聚合特征联合起来，会对可读性和可维护性等重要目标的实现具有重要的意义。”</p>
-<h3 id="Maximize-Cohesion"><a href="#Maximize-Cohesion" class="headerlink" title="Maximize Cohesion"></a>Maximize Cohesion</h3><p>最大化内聚性</p>
-<p>具有相似功能的代码应该放在同一个代码组件里。</p>
-<h3 id="Hide-Implementation-Details"><a href="#Hide-Implementation-Details" class="headerlink" title="Hide Implementation Details"></a>Hide Implementation Details</h3><p>隐藏实现细节</p>
-<p>隐藏实现细节能最小化你在修改程序组件时产生的对那些使用这个组件的其它程序模块的影响</p>
-<h3 id="Law-of-Demeter"><a href="#Law-of-Demeter" class="headerlink" title="Law of Demeter"></a>Law of Demeter</h3><p>笛米特法则</p>
-<p>程序组件应该只跟它的直系亲属有关系(例如继承类，内包含的对象，通过参数入口传入的对象等。)</p>
-<h3 id="Avoid-Premature-Optimization"><a href="#Avoid-Premature-Optimization" class="headerlink" title="Avoid Premature Optimization"></a>Avoid Premature Optimization</h3><p>避免过早优化</p>
-<p>只有当你的程序没有其它问题，只是比你预期的要慢时，你才能去考虑优化工作。</p>
-<p>只有当其它工作都做完后，你才能考虑优化问题，而且你只应该依据经验做法来优化。</p>
-<p>“对于小幅度的性能改进都不该考虑，要优化就应该是97%的性能提升：过早优化是一切罪恶的根源”—Donald Knuth。</p>
-<h3 id="Code-Reuse-is-Good"><a href="#Code-Reuse-is-Good" class="headerlink" title="Code Reuse is Good"></a>Code Reuse is Good</h3><p>代码复用</p>
-<p>这不是非常核心的原则，但它跟其它原则一样非常有价值。代码复用能提高程序的可靠性，节省你的开发时间</p>
-<h3 id="Separation-of-Concerns"><a href="#Separation-of-Concerns" class="headerlink" title="Separation of Concerns"></a>Separation of Concerns</h3><p>职责分离</p>
-<p>不同领域的功能应该由完全不同的代码模块来管理，尽量减少这样的模块之间的重叠。</p>
-<h3 id="Embrace-Change"><a href="#Embrace-Change" class="headerlink" title="Embrace Change"></a>Embrace Change</h3><p>拥抱变化</p>
-<p>是Kent Beck的一本书的副标题，它也是极限编程和敏捷开发方法的基本信条之一。</p>
-<p>很多的其它原则都基于此观念：面对变化，欢迎变化。事实上，一些经典的软件工程原则，例如最小化耦合，就是为了让程序更容易面对变化。</p>
-<p>不论你是否采用了极限编程方法，这个原则对你的程序开发都有重要意义。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/dev/index.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -982,7 +944,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1063,7 +1025,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2010-06-01 20:10:40" itemprop="dateCreated datePublished" datetime="2010-06-01T20:10:40+08:00">2010-06-01</time>
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1115,7 +1077,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic|Fira+Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="下面的 ASCII 码表包含数值在 0-127 之间的字符的十进制、八进制以及十六进制表示.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASCII码表">
+<meta property="og:url" content="https://travonf.github.io/blog/dev/basic/ascii.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="下面的 ASCII 码表包含数值在 0-127 之间的字符的十进制、八进制以及十六进制表示.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2010-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2010-01-01T00:00:00.000Z">
+<meta property="article:author" content="travonf">
+<meta property="article:tag" content="dev">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://travonf.github.io/blog/dev/basic/ascii.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ASCII码表 | Hello World</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hello World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">travonf's homepage</p>
+      <img class="custom-logo-image" src="/blog/uploads/counting_stars.png" alt="Hello World">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="travonf"
+      src="/blog/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">travonf</p>
+  <div class="site-description" itemprop="description">To be, or not to be, that is the question</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/travonf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;travonf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/travonf" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/basic/ascii.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ASCII码表
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>下面的 ASCII 码表包含数值在 0-127 之间的字符的十进制、八进制以及十六进制表示.</p>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th>Ctrl</th>
+<th>十进制</th>
+<th>八进制</th>
+<th>十六进制</th>
+<th>二进制</th>
+<th>字符</th>
+<th>描述</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^@</td>
+<td>0</td>
+<td>0</td>
+<td>00</td>
+<td></td>
+<td>NUL</td>
+<td>null</td>
+<td>空</td>
+</tr>
+<tr>
+<td>^A</td>
+<td>1</td>
+<td>1</td>
+<td>01</td>
+<td></td>
+<td>SOH</td>
+<td>start of header</td>
+<td>头标开始</td>
+</tr>
+<tr>
+<td>^B</td>
+<td>2</td>
+<td>2</td>
+<td>02</td>
+<td></td>
+<td>STX</td>
+<td>start of text</td>
+<td>正文开始</td>
+</tr>
+<tr>
+<td>^C</td>
+<td>3</td>
+<td>3</td>
+<td>03</td>
+<td></td>
+<td>ETX</td>
+<td>end of text</td>
+<td>正文结束</td>
+</tr>
+<tr>
+<td>^D</td>
+<td>4</td>
+<td>4</td>
+<td>04</td>
+<td></td>
+<td>EOT</td>
+<td>end of transmission</td>
+<td>传输结束</td>
+</tr>
+<tr>
+<td>^E</td>
+<td>5</td>
+<td>5</td>
+<td>05</td>
+<td></td>
+<td>ENQ</td>
+<td>enquiry</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>^F</td>
+<td>6</td>
+<td>6</td>
+<td>06</td>
+<td></td>
+<td>ACK</td>
+<td>acknowledge</td>
+<td>确认</td>
+</tr>
+<tr>
+<td>^G</td>
+<td>7</td>
+<td>7</td>
+<td>07</td>
+<td></td>
+<td>BEL</td>
+<td>bell</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>^H</td>
+<td>8</td>
+<td>10</td>
+<td>08</td>
+<td></td>
+<td>BS</td>
+<td>backspace</td>
+<td>退格</td>
+</tr>
+<tr>
+<td>^I</td>
+<td>9</td>
+<td>11</td>
+<td>09</td>
+<td></td>
+<td>HT</td>
+<td>horizontal tab</td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td>^J</td>
+<td>10</td>
+<td>12</td>
+<td>0A</td>
+<td></td>
+<td>LF</td>
+<td>line feed</td>
+<td>换行/新行</td>
+</tr>
+<tr>
+<td>^K</td>
+<td>11</td>
+<td>13</td>
+<td>0B</td>
+<td></td>
+<td>VT</td>
+<td>vertical tab</td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td>^L</td>
+<td>12</td>
+<td>14</td>
+<td>0C</td>
+<td></td>
+<td>FF</td>
+<td>form feed</td>
+<td>换页/新页</td>
+</tr>
+<tr>
+<td>^M</td>
+<td>13</td>
+<td>15</td>
+<td>0D</td>
+<td></td>
+<td>CR</td>
+<td>carriage return</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>^N</td>
+<td>14</td>
+<td>16</td>
+<td>0E</td>
+<td></td>
+<td>SO</td>
+<td>shift out</td>
+<td>移出</td>
+</tr>
+<tr>
+<td>^O</td>
+<td>15</td>
+<td>17</td>
+<td>0F</td>
+<td></td>
+<td>SI</td>
+<td>shift in</td>
+<td>移入</td>
+</tr>
+<tr>
+<td>^P</td>
+<td>16</td>
+<td>20</td>
+<td>10</td>
+<td></td>
+<td>DLE</td>
+<td>data link escape</td>
+<td>数据链路转意</td>
+</tr>
+<tr>
+<td>^Q</td>
+<td>17</td>
+<td>21</td>
+<td>11</td>
+<td></td>
+<td>DC1</td>
+<td>no assignment, but usually XON</td>
+<td>设备控制 1</td>
+</tr>
+<tr>
+<td>^R</td>
+<td>18</td>
+<td>22</td>
+<td>12</td>
+<td></td>
+<td>DC2</td>
+<td></td>
+<td>设备控制 2</td>
+</tr>
+<tr>
+<td>^S</td>
+<td>19</td>
+<td>23</td>
+<td>13</td>
+<td></td>
+<td>DC3</td>
+<td>no assignment, but usually XOFF</td>
+<td>设备控制 3</td>
+</tr>
+<tr>
+<td>^T</td>
+<td>20</td>
+<td>24</td>
+<td>14</td>
+<td></td>
+<td>DC4</td>
+<td></td>
+<td>设备控制 4</td>
+</tr>
+<tr>
+<td>^U</td>
+<td>21</td>
+<td>25</td>
+<td>15</td>
+<td></td>
+<td>NAK</td>
+<td>negative acknowledge</td>
+<td>反确认</td>
+</tr>
+<tr>
+<td>^V</td>
+<td>22</td>
+<td>26</td>
+<td>16</td>
+<td></td>
+<td>SYN</td>
+<td>synchronous idle</td>
+<td>同步空闲</td>
+</tr>
+<tr>
+<td>^W</td>
+<td>23</td>
+<td>27</td>
+<td>17</td>
+<td></td>
+<td>ETB</td>
+<td>end of transmission block</td>
+<td>传输块结束</td>
+</tr>
+<tr>
+<td>^X</td>
+<td>24</td>
+<td>30</td>
+<td>18</td>
+<td></td>
+<td>CAN</td>
+<td>cancel</td>
+<td>取消</td>
+</tr>
+<tr>
+<td>^Y</td>
+<td>25</td>
+<td>31</td>
+<td>19</td>
+<td></td>
+<td>EM</td>
+<td>end of medium</td>
+<td>媒体结束</td>
+</tr>
+<tr>
+<td>^Z</td>
+<td>26</td>
+<td>32</td>
+<td>1A</td>
+<td></td>
+<td>SUB</td>
+<td>substitute</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>^[</td>
+<td>27</td>
+<td>33</td>
+<td>1B</td>
+<td></td>
+<td>ESC</td>
+<td>escape</td>
+<td></td>
+</tr>
+<tr>
+<td>^\</td>
+<td>28</td>
+<td>34</td>
+<td>1C</td>
+<td></td>
+<td>FS</td>
+<td>file seperator</td>
+<td>文件分隔符</td>
+</tr>
+<tr>
+<td>^]</td>
+<td>29</td>
+<td>35</td>
+<td>1D</td>
+<td></td>
+<td>GS</td>
+<td>group seperator</td>
+<td>组分隔符</td>
+</tr>
+<tr>
+<td>^^</td>
+<td>30</td>
+<td>36</td>
+<td>1E</td>
+<td></td>
+<td>RS</td>
+<td>record seperator</td>
+<td>记录分隔符</td>
+</tr>
+<tr>
+<td>^_</td>
+<td>31</td>
+<td>37</td>
+<td>1F</td>
+<td></td>
+<td>US</td>
+<td>unit seperator</td>
+<td>单元分隔符</td>
+</tr>
+<tr>
+<td></td>
+<td>32</td>
+<td>40</td>
+<td>20</td>
+<td></td>
+<td>SPC</td>
+<td>space</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>33</td>
+<td>41</td>
+<td>21</td>
+<td></td>
+<td>!</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>34</td>
+<td>42</td>
+<td>22</td>
+<td></td>
+<td>“</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>35</td>
+<td>43</td>
+<td>23</td>
+<td></td>
+<td>#</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>36</td>
+<td>44</td>
+<td>24</td>
+<td></td>
+<td>$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>37</td>
+<td>45</td>
+<td>25</td>
+<td></td>
+<td>%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>38</td>
+<td>46</td>
+<td>26</td>
+<td></td>
+<td>&amp;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>39</td>
+<td>47</td>
+<td>27</td>
+<td></td>
+<td>‘</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>40</td>
+<td>50</td>
+<td>28</td>
+<td></td>
+<td>(</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>41</td>
+<td>51</td>
+<td>29</td>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>42</td>
+<td>52</td>
+<td>2A</td>
+<td></td>
+<td>*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>43</td>
+<td>53</td>
+<td>2B</td>
+<td></td>
+<td>+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>44</td>
+<td>54</td>
+<td>2C</td>
+<td></td>
+<td>,</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>45</td>
+<td>55</td>
+<td>2D</td>
+<td></td>
+<td>-</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>46</td>
+<td>56</td>
+<td>2E</td>
+<td></td>
+<td>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>47</td>
+<td>57</td>
+<td>2F</td>
+<td></td>
+<td>/</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>48</td>
+<td>60</td>
+<td>30</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>49</td>
+<td>61</td>
+<td>31</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>50</td>
+<td>62</td>
+<td>32</td>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>51</td>
+<td>63</td>
+<td>33</td>
+<td></td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>52</td>
+<td>64</td>
+<td>34</td>
+<td></td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>53</td>
+<td>65</td>
+<td>35</td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>54</td>
+<td>66</td>
+<td>36</td>
+<td></td>
+<td>6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>55</td>
+<td>67</td>
+<td>37</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>56</td>
+<td>70</td>
+<td>38</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>57</td>
+<td>71</td>
+<td>39</td>
+<td></td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>58</td>
+<td>72</td>
+<td>3A</td>
+<td></td>
+<td>:</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>59</td>
+<td>73</td>
+<td>3B</td>
+<td></td>
+<td>;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>60</td>
+<td>74</td>
+<td>3C</td>
+<td></td>
+<td>&lt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>61</td>
+<td>75</td>
+<td>3D</td>
+<td></td>
+<td>=</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>62</td>
+<td>76</td>
+<td>3E</td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>63</td>
+<td>77</td>
+<td>3F</td>
+<td></td>
+<td>?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>64</td>
+<td>100</td>
+<td>40</td>
+<td></td>
+<td>@</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>65</td>
+<td>101</td>
+<td>41</td>
+<td></td>
+<td>A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>66</td>
+<td>102</td>
+<td>42</td>
+<td></td>
+<td>B</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>67</td>
+<td>103</td>
+<td>43</td>
+<td></td>
+<td>C</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>68</td>
+<td>104</td>
+<td>44</td>
+<td></td>
+<td>D</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>69</td>
+<td>105</td>
+<td>45</td>
+<td></td>
+<td>E</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>70</td>
+<td>106</td>
+<td>46</td>
+<td></td>
+<td>F</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>71</td>
+<td>107</td>
+<td>47</td>
+<td></td>
+<td>G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>72</td>
+<td>110</td>
+<td>48</td>
+<td></td>
+<td>H</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>73</td>
+<td>111</td>
+<td>49</td>
+<td></td>
+<td>I</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>74</td>
+<td>112</td>
+<td>4A</td>
+<td></td>
+<td>J</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>75</td>
+<td>113</td>
+<td>4B</td>
+<td></td>
+<td>K</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>76</td>
+<td>114</td>
+<td>4C</td>
+<td></td>
+<td>L</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>77</td>
+<td>115</td>
+<td>4D</td>
+<td></td>
+<td>M</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>78</td>
+<td>116</td>
+<td>4E</td>
+<td></td>
+<td>N</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>79</td>
+<td>117</td>
+<td>4F</td>
+<td></td>
+<td>O</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>80</td>
+<td>120</td>
+<td>50</td>
+<td></td>
+<td>P</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>81</td>
+<td>121</td>
+<td>51</td>
+<td></td>
+<td>Q</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>82</td>
+<td>122</td>
+<td>52</td>
+<td></td>
+<td>R</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>83</td>
+<td>123</td>
+<td>53</td>
+<td></td>
+<td>S</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>84</td>
+<td>124</td>
+<td>54</td>
+<td></td>
+<td>T</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>85</td>
+<td>125</td>
+<td>55</td>
+<td></td>
+<td>U</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>86</td>
+<td>126</td>
+<td>56</td>
+<td></td>
+<td>V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>87</td>
+<td>127</td>
+<td>57</td>
+<td></td>
+<td>W</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>88</td>
+<td>130</td>
+<td>58</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>89</td>
+<td>131</td>
+<td>59</td>
+<td></td>
+<td>Y</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>90</td>
+<td>132</td>
+<td>5A</td>
+<td></td>
+<td>Z</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>91</td>
+<td>133</td>
+<td>5B</td>
+<td></td>
+<td>[</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>92</td>
+<td>134</td>
+<td>5C</td>
+<td></td>
+<td>\</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>93</td>
+<td>135</td>
+<td>5D</td>
+<td></td>
+<td>]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>94</td>
+<td>136</td>
+<td>5E</td>
+<td></td>
+<td>^</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>95</td>
+<td>137</td>
+<td>5F</td>
+<td></td>
+<td>_</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>96</td>
+<td>140</td>
+<td>60</td>
+<td></td>
+<td>`</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>97</td>
+<td>141</td>
+<td>61</td>
+<td></td>
+<td>a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>98</td>
+<td>142</td>
+<td>62</td>
+<td></td>
+<td>b</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>99</td>
+<td>143</td>
+<td>63</td>
+<td></td>
+<td>c</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>100</td>
+<td>144</td>
+<td>64</td>
+<td></td>
+<td>d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>101</td>
+<td>145</td>
+<td>65</td>
+<td></td>
+<td>e</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>102</td>
+<td>146</td>
+<td>66</td>
+<td></td>
+<td>f</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>103</td>
+<td>147</td>
+<td>67</td>
+<td></td>
+<td>g</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>104</td>
+<td>150</td>
+<td>68</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>105</td>
+<td>151</td>
+<td>69</td>
+<td></td>
+<td>i</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>106</td>
+<td>152</td>
+<td>6A</td>
+<td></td>
+<td>j</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>107</td>
+<td>153</td>
+<td>6B</td>
+<td></td>
+<td>k</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>108</td>
+<td>154</td>
+<td>6C</td>
+<td></td>
+<td>l</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>109</td>
+<td>155</td>
+<td>6D</td>
+<td></td>
+<td>m</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>110</td>
+<td>156</td>
+<td>6E</td>
+<td></td>
+<td>n</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>111</td>
+<td>157</td>
+<td>6F</td>
+<td></td>
+<td>o</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>112</td>
+<td>160</td>
+<td>70</td>
+<td></td>
+<td>p</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>113</td>
+<td>161</td>
+<td>71</td>
+<td></td>
+<td>q</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>114</td>
+<td>162</td>
+<td>72</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>115</td>
+<td>163</td>
+<td>73</td>
+<td></td>
+<td>s</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>116</td>
+<td>164</td>
+<td>74</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>117</td>
+<td>165</td>
+<td>75</td>
+<td></td>
+<td>u</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>118</td>
+<td>166</td>
+<td>76</td>
+<td></td>
+<td>v</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>119</td>
+<td>167</td>
+<td>77</td>
+<td></td>
+<td>w</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>120</td>
+<td>170</td>
+<td>78</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>121</td>
+<td>171</td>
+<td>79</td>
+<td></td>
+<td>y</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>122</td>
+<td>172</td>
+<td>7A</td>
+<td></td>
+<td>z</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>123</td>
+<td>173</td>
+<td>7B</td>
+<td></td>
+<td>{</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>124</td>
+<td>174</td>
+<td>7C</td>
+<td></td>
+<td>|</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>125</td>
+<td>175</td>
+<td>7D</td>
+<td></td>
+<td>}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>126</td>
+<td>176</td>
+<td>7E</td>
+<td></td>
+<td>~</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>127</td>
+<td>177</td>
+<td>7F</td>
+<td></td>
+<td>DEL</td>
+<td>delete</td>
+<td></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/blog/images/wechatpay.png" alt="travonf 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/blog/images/wechatpay.png" alt="travonf 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/blog/images/wechatpay.png" alt="travonf PayPal">
+        <span>PayPal</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>travonf
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://travonf.github.io/blog/dev/basic/ascii.html" title="ASCII码表">https://travonf.github.io/blog/dev/basic/ascii.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/dev/" rel="tag"># dev</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/dev/markdown/basic.html" rel="prev" title="MarkDown使用说明">
+                  <i class="fa fa-chevron-left"></i> MarkDown使用说明
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/db/mysql/common-sentences.html" rel="next" title="mysql常用语句">
+                  mysql常用语句 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">travonf</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '4deec28e73e2ca736334',
+      clientSecret: '5f0533ddde90164559b16c488eacf29fd2243547',
+      repo        : 'blog',
+      owner       : 'travonf',
+      admin       : ['travonf'],
+      id          : 'f76186e509e2a27e3c74923ae53d2aec',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
