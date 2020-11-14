@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -267,7 +267,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/umi/usage.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/javascript/umi/usage.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -281,7 +281,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/dev/umi/usage.html" class="post-title-link" itemprop="url">umi3.0踩坑记录</a>
+            <a href="/blog/dev/javascript/umi/usage.html" class="post-title-link" itemprop="url">umi3.0踩坑记录</a>
         </h2>
 
         <div class="post-meta-container">
@@ -317,7 +317,7 @@
           <p>新的东西出来总是要尝尝鲜的，在这里把遇到的一些问题记录下来，方便他人避坑。<br>遇到问题时，多翻翻官方文档，虽然写的很粗（每次翻都血压上升），再翻翻 issues 区，看看有没有前人遇到过相似的问题；<br>这里有一个演练场，基于 umijs，与本地开发体验一致，可以用来提交问题复现，<a target="_blank" rel="noopener" href="https://codesandbox.io/s/umi-app-9nizb">点此查看</a><br>另外我现在会尽量用 ts 来写，这样不用为了查找 API 翻来翻去了；<br>话不多说，我们进入正题，如有错误，欢迎指正：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/dev/umi/usage.html#more" rel="contents">
+              <a class="btn" href="/blog/dev/javascript/umi/usage.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -395,7 +395,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>如果你已经开始工作了，一定对 Git 不陌生，开发需要一个团队，版本控制必不可少。如果你还在学习，准备参加工作，那建议你抽空好好学习一下 Git。</p>
+          <p>如果你已经开始工作了，一定对 <code>Git</code> 不陌生，开发需要一个团队，版本控制必不可少。如果你还在学习，准备参加工作，那建议你抽空好好学习一下 <code>Git</code>。</p>
+<p><code>Git</code> 是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。在我们的工作中也是必备的技能，还记得第一天入职主管给我的第一个任务就是让我学习 <code>Git</code>，熟悉 <code>Git</code> 的整个开发流程。<code>Git</code> 具有以下特点：</p>
+<p>速度快、灵活</p>
+<p>自由选择工作方式</p>
+<p>保持工作独立</p>
+<p>适合分布式开发，强调个体</p>
+<p>下面是我总结的几大块 <code>git</code> 命令，与君共享。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/dev/git/basic.html#more" rel="contents">
@@ -551,9 +557,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p>LSI公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID控制器、SSD控制器、ReadChannel、Preamp、Axxia网络处理器和定制ASIC等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。<br>在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、联想、宝德、浪潮、中科曙光等服务器都使用LSI品牌的阵列卡作为服务器存储控制器，而且其性能其他品牌RAID控制器无与伦比，可见LSI阵列卡的优越性。<br>LSI阵列卡默认采用基于图形化的BIOS界面来管理，服务器在开机自检界面提示按CTRL+C、CTRL+R、CTRL+H等组合键进入，可使用鼠标或键盘来完成RAID的配置等，这种比较适合少量机器手工配置的场景。如果大量的服务器RAID的配置任采用这种方法就显得力不从心了，不过实际上LSI官方推出了基于命令行的管理软件来实现对RAID控制卡的配置与管理，在操作系统内安装软件，可直接对RAID控制卡的管理，同时也可使用带驱动的Linux内核+脚本即可实现大量服务器批量化自动配置RAID来提高管理效率。<br>目前LSI官方发布的基于SAS/SATA控制器RAID控制卡产品型号（芯片）有：LSI1064、LSI1086、LSI1078、LSI2008、LSI2208、lSI2308、LSI3008、LSI3108等。<br>一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli、SAS2IRCU等工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器则使用其特有的hpacucli工具来管理。</p>
-</blockquote>
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>LSI 公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID 控制器、SSD 控制器、ReadChannel、Preamp、Axxia 网络处理器和定制 ASIC 等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。</p>
+<p>在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、联想、宝德、浪潮、中科曙光等服务器都使用 LSI 品牌的阵列卡作为服务器存储控制器，而且其性能其他品牌 RAID 控制器无与伦比，可见 LSI 阵列卡的优越性。</p>
+<p>LSI 阵列卡默认采用基于图形化的 BIOS 界面来管理，服务器在开机自检界面提示按 CTRL+C、CTRL+R、CTRL+H 等组合键进入，可使用鼠标或键盘来完成 RAID 的配置等，这种比较适合少量机器手工配置的场景。如果大量的服务器 RAID 的配置任采用这种方法就显得力不从心了，不过实际上 LSI 官方推出了基于命令行的管理软件来实现对 RAID 控制卡的配置与管理，在操作系统内安装软件，可直接对 RAID 控制卡的管理，同时也可使用带驱动的 Linux 内核+脚本即可实现大量服务器批量化自动配置 RAID 来提高管理效率。</p>
+<p>目前 LSI 官方发布的基于 SAS/SATA 控制器 RAID 控制卡产品型号（芯片）有：LSI1064、LSI1086、LSI1078、LSI2008、LSI2208、lSI2308、LSI3008、LSI3108 等。<br>一般地，支持 RAID 5 的卡，我们称其为阵列卡，都可以使用 LSI 官方提供的 MegaCli、SAS2IRCU 等工具来管理，而不支持 RAID 5 的卡，我们称其为 SAS 卡，使用 lsiutil 工具来管理。HP 的服务器则使用其特有的 hpacucli 工具来管理。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/hw/conf-raid.html#more" rel="contents">
@@ -634,9 +641,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p>目前全球只有四家独立BIOS供应商，<br>曾经的Award Software与General Software均被Phoenix Technologies收购，<br>Microid Research被Unicore Software收购，<br>SystemSoft被Insyde Software收购。  </p>
-</blockquote>
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>目前全球只有四家独立 BIOS 供应商，<br>曾经的 Award Software 与 General Software 均被 Phoenix Technologies 收购，<br>Microid Research 被 Unicore Software 收购，<br>SystemSoft 被 Insyde Software 收购。</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phoenix Technologies</td>
+<td>美国凤凰科技。</td>
+</tr>
+<tr>
+<td>American Megatrends</td>
+<td>美国安迈科技，目前为全球最大的 BIOS 供应商。之前曾被凤凰科技超过。</td>
+</tr>
+<tr>
+<td>Insyde Software</td>
+<td>台湾系微公司。</td>
+</tr>
+<tr>
+<td>Byosoft</td>
+<td>新兴厂商，中国大陆的百敖软件公司。</td>
+</tr>
+</tbody></table>
+<p>华为的服务器 BIOS vendor 为 Insyde，浪潮为 AMI，暂未发现使用其他厂商的 BIOS，另外两家 BIOS 暂未发现服务器使用。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/hw/conf-bios.html#more" rel="contents">
@@ -838,87 +868,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/index.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
-      <meta itemprop="name" content="travonf">
-      <meta itemprop="description" content="To be, or not to be, that is the question">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/dev/index.html" class="post-title-link" itemprop="url">The Principles of Good Programming</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="编程原则"><a href="#编程原则" class="headerlink" title="编程原则"></a>编程原则</h2><p>来源：<a target="_blank" rel="noopener" href="https://www.artima.com/weblogs/viewpost.jsp?thread=331531">https://www.artima.com/weblogs/viewpost.jsp?thread=331531</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/dev/index.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/net/arp.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1052,6 +1001,87 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/net/switch.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/read/conversationally-speaking.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/read/conversationally-speaking.html" class="post-title-link" itemprop="url">谈话的力量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Read/" itemprop="url" rel="index"><span itemprop="name">Read</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="学会提问题"><a href="#学会提问题" class="headerlink" title="学会提问题"></a>学会提问题</h2><p>1 封闭式 选择题 唯一答案<br>2 开放式 问答题 思维扩散</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/read/conversationally-speaking.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

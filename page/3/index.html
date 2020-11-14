@@ -203,7 +203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -300,7 +300,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+          <a href="/blog/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -374,7 +378,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+          <a href="/blog/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -653,6 +661,155 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/os/powershell/operator.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/basic/unicode.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/dev/basic/unicode.html" class="post-title-link" itemprop="url">Unicode码表</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Unicode 可以逻辑分为 17 平面(<code>Plane</code>)，每个平面拥有 65536(= 2^16)个代码点，虽然目前只有少数平面被使用。</p>
+<ul>
+<li><p>平面 00 (000000–00FFFF): 基本多文种平面（Basic Multilingual Plane, BMP）</p>
+</li>
+<li><p>平面 01 (010000–01FFFF): 多文种补充平面（Supplementary Multilingual Plane, SMP）</p>
+</li>
+<li><p>平面 02 (020000–02FFFF): 表意文字补充平面（Supplementary Ideographic Plane, SIP）</p>
+</li>
+<li><p>平面 03 (030000–03FFFF): 表意文字第三平面（Tertiary Ideographic Plane, TIP）</p>
+</li>
+<li><p>平面 04 (040000–04FFFF): 尚未使用</p>
+</li>
+<li><p>平面 05 (050000–05FFFF): 尚未使用</p>
+</li>
+<li><p>平面 06 (060000–06FFFF): 尚未使用</p>
+</li>
+<li><p>平面 07 (070000–07FFFF): 尚未使用</p>
+</li>
+<li><p>平面 08 (080000–08FFFF): 尚未使用</p>
+</li>
+<li><p>平面 09 (090000–09FFFF): 尚未使用</p>
+</li>
+<li><p>平面 10 (0A0000–0AFFFF): 尚未使用</p>
+</li>
+<li><p>平面 11 (0B0000–0BFFFF): 尚未使用</p>
+</li>
+<li><p>平面 12 (0C0000–0CFFFF): 尚未使用</p>
+</li>
+<li><p>平面 13 (0D0000–0DFFFF): 尚未使用</p>
+</li>
+<li><p>平面 14 (0E0000–0EFFFF): 特别用途补充平面（Supplementary Special-purpose Plane, SSP）</p>
+</li>
+<li><p>平面 15 (0F0000–0FFFFF): 保留作为私人使用区（Private Use Area, PUA）</p>
+</li>
+<li><p>平面 16 (100000–10FFFF): 保留作为私人使用区（Private Use Area, PUA）</p>
+</li>
+<li><p>标点符号: 2000-200F 2028-202F 205F 2065-206F</p>
+</li>
+<li><p>字母符号: 2100–214F</p>
+</li>
+<li><p>各种技术符号: 2300-23FF</p>
+</li>
+<li><p>杂项符号: 2600-26FF</p>
+</li>
+<li><p>符号字体: 2700-27BF</p>
+</li>
+<li><p>箭头: 2B00-2BFF 2900-297F</p>
+</li>
+<li><p>中文符号: 303D 3200–32FF 2049 203C</p>
+</li>
+<li><p>High Surrogates: D800..DB7F</p>
+</li>
+<li><p>High Private Use Surrogates: DB80..DBFF</p>
+</li>
+<li><p>Low Surrogates: DC00..DFFF D800-DFFF E000-F8FF</p>
+</li>
+<li><p>Private Use Area: E000-F8FF</p>
+</li>
+<li><p>变异选择器: IOS 独有 FE00-FE0F</p>
+</li>
+<li><p>国旗: 1F100-1F1FF</p>
+</li>
+<li><p>杂项象形符号: 1F300-1F5FF</p>
+</li>
+<li><p>表情符号: 1F600-1F64F</p>
+</li>
+<li><p>交通和地图符号: 1F680-1F6FF</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/dev/basic/unicode.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
