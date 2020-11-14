@@ -2,7 +2,7 @@
 title: 走进交换机“层”的世界
 date: 2010-01-01 08:00:00
 updated: 2010-01-01 08:00:00
-tags: "net"
+tags: "switch"
 categories: "Network"
 ---
 

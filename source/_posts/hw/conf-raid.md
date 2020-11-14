@@ -7,34 +7,43 @@ categories: "Hardware"
 ---
 
 # 概述
-> LSI公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID控制器、SSD控制器、ReadChannel、Preamp、Axxia网络处理器和定制ASIC等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。
-在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、联想、宝德、浪潮、中科曙光等服务器都使用LSI品牌的阵列卡作为服务器存储控制器，而且其性能其他品牌RAID控制器无与伦比，可见LSI阵列卡的优越性。
-LSI阵列卡默认采用基于图形化的BIOS界面来管理，服务器在开机自检界面提示按CTRL+C、CTRL+R、CTRL+H等组合键进入，可使用鼠标或键盘来完成RAID的配置等，这种比较适合少量机器手工配置的场景。如果大量的服务器RAID的配置任采用这种方法就显得力不从心了，不过实际上LSI官方推出了基于命令行的管理软件来实现对RAID控制卡的配置与管理，在操作系统内安装软件，可直接对RAID控制卡的管理，同时也可使用带驱动的Linux内核+脚本即可实现大量服务器批量化自动配置RAID来提高管理效率。
-目前LSI官方发布的基于SAS/SATA控制器RAID控制卡产品型号（芯片）有：LSI1064、LSI1086、LSI1078、LSI2008、LSI2208、lSI2308、LSI3008、LSI3108等。
-一般地，支持RAID 5的卡，我们称其为阵列卡，都可以使用LSI官方提供的MegaCli、SAS2IRCU等工具来管理，而不支持RAID 5的卡，我们称其为SAS卡，使用lsiutil工具来管理。HP的服务器则使用其特有的hpacucli工具来管理。
+
+LSI 公司（LSI Corporation）（NASDAQ：LSI）是一家总部位于加利福尼亚州米尔皮塔斯 (Milpitas) 的半导体和软件领先供应商，其主要产品包括：RAID 控制器、SSD 控制器、ReadChannel、Preamp、Axxia 网络处理器和定制 ASIC 等，为加速数据存储中心与移动网络性能提供了许多领先的解决方案。
+
+在目前各大知名品牌服务器厂商：IBM、DELL、HP、华为、联想、宝德、浪潮、中科曙光等服务器都使用 LSI 品牌的阵列卡作为服务器存储控制器，而且其性能其他品牌 RAID 控制器无与伦比，可见 LSI 阵列卡的优越性。
+
+LSI 阵列卡默认采用基于图形化的 BIOS 界面来管理，服务器在开机自检界面提示按 CTRL+C、CTRL+R、CTRL+H 等组合键进入，可使用鼠标或键盘来完成 RAID 的配置等，这种比较适合少量机器手工配置的场景。如果大量的服务器 RAID 的配置任采用这种方法就显得力不从心了，不过实际上 LSI 官方推出了基于命令行的管理软件来实现对 RAID 控制卡的配置与管理，在操作系统内安装软件，可直接对 RAID 控制卡的管理，同时也可使用带驱动的 Linux 内核+脚本即可实现大量服务器批量化自动配置 RAID 来提高管理效率。
+
+目前 LSI 官方发布的基于 SAS/SATA 控制器 RAID 控制卡产品型号（芯片）有：LSI1064、LSI1086、LSI1078、LSI2008、LSI2208、lSI2308、LSI3008、LSI3108 等。
+一般地，支持 RAID 5 的卡，我们称其为阵列卡，都可以使用 LSI 官方提供的 MegaCli、SAS2IRCU 等工具来管理，而不支持 RAID 5 的卡，我们称其为 SAS 卡，使用 lsiutil 工具来管理。HP 的服务器则使用其特有的 hpacucli 工具来管理。
 
 <!-- more -->
 
 ## Drive Group and Virtual Drive
+
 With the increasing traffic volume of modern data centers, more data needs to run on a single server. When a single drive is insufficient to support system services in terms of capacity and security, multiple drives need to be combined to serve as a visible drive for external entities to meet service requirements. A drive group is a group of physical drives combined as a whole for external entities. Drive groups are the basis for virtual drives.
 
 A virtual drive is a continuous data storage unit divided from a drive group. A virtual drive can be considered an independent drive. Thanks to certain configuration, a virtual drive can provide higher capacity, security, and data redundancy than a physical drive.
 
 A virtual drive can be:
-• A complete drive group.
-• Multiple complete drive groups.
-• Part of a drive group.
-• Parts of multiple drive groups (a part is divided from every drive group, and these parts form a virtual drive).
+
+- A complete drive group.
+- Multiple complete drive groups.
+- Part of a drive group.
+- Parts of multiple drive groups (a part is divided from every drive group, and these parts form a virtual drive).
 
 Related conventions:
-• A drive group is usually specified as **Drive Group** (DG for short).
-• A virtual drive is usually specified as **Virtual Drive**, **Virtual Disk** (VD for short), **Volume**, **Array**, and **Logical Device** (LD for short).
 
-关于DG和VD的区别可以看看上面的解释。
+- A drive group is usually specified as **Drive Group** (DG for short).
+- A virtual drive is usually specified as **Virtual Drive**, **Virtual Disk** (VD for short), **Volume**, **Array**, and **Logical Device** (LD for short).
+
+关于 DG 和 VD 的区别可以看看上面的解释。
 
 # 检测及修复
+
 ## 型号
-``` bash
+
+```bash
 # 检查存储控制器型号
 # lspci | grep "RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 1078"
 01:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS 1078 (rev 04)
@@ -65,10 +74,11 @@ Related conventions:
 ```
 
 ## 命令
-不同的RAID卡，厂商或型号不同，对应的命令也不同，以下是目前已知的检查命令：
+
+不同的 RAID 卡，厂商或型号不同，对应的命令也不同，以下是目前已知的检查命令：
 
 | Corp | Model   | Cmd       |
-| ---- | -----   | ---       |
+| ---- | ------- | --------- |
 | LSI  | SAS2208 | storcli64 |
 | LSI  | SAS2308 | sas2ircu  |
 | LSI  | SAS3008 | sas3ircu  |
@@ -76,12 +86,16 @@ Related conventions:
 | LSI  | SAS3316 | storcli64 |
 
 ## 示例
-### storcli64
-> storcli已经基本代替了megacli，官方推荐使用storcli管理RAID
 
-#### 检查RAID
-通过命令storcli64 /call show可以得到控制器信息
-``` bash
+### storcli64
+
+> storcli 已经基本代替了 megacli，官方推荐使用 storcli 管理 RAID
+
+#### 检查 RAID
+
+通过命令 storcli64 /call show 可以得到控制器信息
+
+```bash
 # storcli64 /call show
 Controller = 0
 Status = Success
@@ -104,7 +118,8 @@ PCI Bus Number = 1
 PCI Device Number = 0
 PCI Function Number = 0
 ```
-``` bash
+
+```bash
 Drive Groups = 5
 
 # Drive Groups信息可以由以下命令单独列出
@@ -148,7 +163,8 @@ DS3=Dimmer Switch 3|dflt=Default|Msng=Missing|FSpace=Free Space Present
 
 # 这个地方的PDC就是disk cache, 可选On\Off\Default三种选项, 对应为enbl\dsbl\dflt
 ```
-``` bash
+
+```bash
 Virtual Drives = 5
 
 # Virtual Drives信息可以由以下命令单独列出
@@ -178,14 +194,15 @@ Check Consistency
 # VD4做了RAID5，Read Policy为Ra，Write Policy为WB，Cache Policy为Direct IO
 ```
 
-| **设置项**        | 可选值  |        |         |         |
-|------------------|--------|--------|---------|---------|
+| **设置项**       | 可选值 |        |         |         |
+| ---------------- | ------ | ------ | ------- | ------- |
 | **accesspolicy** | RW     | RO     | Blocked | RmvBlkd |
 | **rdcache**      | RA     | NoRA   |         |         |
 | **wrcache**      | WT     | WB     | AWB     |         |
 | **pdcache**      | On     | Off    | Default |         |
 | **iopolicy**     | Cached | Direct |         |         |
-``` bash
+
+```bash
 Physical Drives = 12
 
 # Physical Drives信息可以由以下命令单独列出
@@ -218,7 +235,8 @@ Med-Media Type|SED-Self Encryptive Drive|PI-Protection Info
 SeSz-Sector Size|Sp-Spun|U-Up|D-Down|T-Transition|F-Foreign
 
 ```
-``` bash
+
+```bash
 
 # BBU信息可以由以下命令单独列出
 # storcli64 /call /bbu show
@@ -233,36 +251,38 @@ CVPM02 Optimal 0 hour(s)     21C  0    2015/11/14 2018/08/23  10:48:12
 -----------------------------------------------------------------------
 ```
 
-
-
-#### 创建和删除RAID
+#### 创建和删除 RAID
 
 **命令功能**
-创建、删除RAID。
+创建、删除 RAID。
 
 **命令格式**
-``` bash
+
+```bash
 storcli64 /c`controller_id` add vd r`level` size=`capacity` drives=`enclosure_id`:`startid-endid`
 ```
-``` bash
+
+```bash
 storcli64 /c`controller_id`/v`raid_id` del
 ```
 
 **参数说明**
 
-|参数          |参数说明                       |取值|
-|--------------|-----------------------------|----|
-|controller_id |RAID卡的ID                    |–   |
-|level         |要配置的RAID级别               |–   |
-|capacity      |要配置的RAID容量               |–   |
-|enclosure_id  |硬盘所在Enclosure的ID          |–   |
-|startid-endid |要加入RAID的硬盘的起始和结束ID   |–   |
-|raid_id       |要删除的RAID的ID               |–   |
+| 参数          | 参数说明                          | 取值 |
+| ------------- | --------------------------------- | ---- |
+| controller_id | RAID 卡的 ID                      | –    |
+| level         | 要配置的 RAID 级别                | –    |
+| capacity      | 要配置的 RAID 容量                | –    |
+| enclosure_id  | 硬盘所在 Enclosure 的 ID          | –    |
+| startid-endid | 要加入 RAID 的硬盘的起始和结束 ID | –    |
+| raid_id       | 要删除的 RAID 的 ID               | –    |
+
 **使用指南**
 无
 
 **使用实例**
-``` bash
+
+```bash
 # 创建RAID 0
 
 domino:~# ./storcli64 /c0 add vd r0 size=100GB drives=252:0-3
@@ -270,7 +290,8 @@ Controller = 0
 Status = Success
 Description = Add VD Succeeded
 ```
-``` bash
+
+```bash
 # 删除RAID
 
 domino:~# ./storcli64 /c0/v0 del
@@ -279,32 +300,33 @@ Status = Success
 Description = Delete VD Succeeded
 ```
 
-
-#### 设置RAID组的Cache读写属性
+#### 设置 RAID 组的 Cache 读写属性
 
 **命令功能**
-设置RAID组的Cache读写属性。
+设置 RAID 组的 Cache 读写属性。
 
 **命令格式**
-``` bash
+
+```bash
 storcli64 /c`controller_id`/v`raid_id` set wrcache=`mode`
 ```
 
 **参数说明**
 
-|参数               |参数说明          |取值|
-|-------------------|-----------------|---|
-|controller_id      |RAID卡的ID        |–  |
-|raid_id            |待设置的RAID的ID   |–  |
-|mode               |Cache读写模式      |wt：当磁盘子系统接收到所有传输数据后，控制器将给主机返回数据传输完成信号。 |
-|                   |                  |wb：控制器Cache收到所有的传输数据后，将给主机返回数据传输完成信号。      |
-|                   |                  |awb：在RAID卡无电容或电容损坏的情况下，强制使用“wb”模式。              |
+| 参数          | 参数说明            | 取值                                                                       |
+| ------------- | ------------------- | -------------------------------------------------------------------------- |
+| controller_id | RAID 卡的 ID        | –                                                                          |
+| raid_id       | 待设置的 RAID 的 ID | –                                                                          |
+| mode          | Cache 读写模式      | wt：当磁盘子系统接收到所有传输数据后，控制器将给主机返回数据传输完成信号。 |
+|               |                     | wb：控制器 Cache 收到所有的传输数据后，将给主机返回数据传输完成信号。      |
+|               |                     | awb：在 RAID 卡无电容或电容损坏的情况下，强制使用“wb”模式。                |
 
 **使用指南**
 无
 
 **使用实例**
-``` bash
+
+```bash
 # 设置Cache读写模式为“wt”。
 
 domino:~# ./storcli64 /c0/v0 set wrcache=wt
@@ -320,10 +342,9 @@ VD Property Value Status  ErrCd ErrMsg
 ---------------------------------------
 ```
 
-
-
 #### disk cache
-``` bash
+
+```bash
 # 查看disk cache信息
 # storcli64 /c0 /dall show
 Controller = 0
@@ -373,10 +394,9 @@ DS3=Dimmer Switch 3|dflt=Default|Msng=Missing|FSpace=Free Space Present
 storcli /c`x`/v`x` set pdcache=`On`|`Off`|`Default`
 ```
 
+#### 自动 rebuild
 
-
-#### 自动rebuild
-``` bash
+```bash
 # 使用如下命令检查auto rebuild的信息
 # storcli64 /call show autorebuild
 Controller = 0
@@ -397,34 +417,33 @@ AutoRebuild OFF
 storcli /c`x` set autorebuild=<`on`|`off`>
 ```
 
-
-
 #### 设置启动项
 
 **命令功能**
 设置虚拟磁盘或物理硬盘为启动项。
 
 **命令格式**
-``` bash
+
+```bash
 storcli64 /c`controller_id`/v`vd_id` set bootdrive=on
 storcli64 /c`controller_id`/e`enclosure_id`/s`slot_id` set bootdrive=on
 ```
 
 **参数说明**
 
-|参数          |参数说明              |取值|
-|--------------|--------------------|----|
-|controller_id |RAID卡的ID           |–   |
-|vd_id         |待设置的虚拟磁盘的ID   |–   |
-|enclosure_id  |硬盘所在Enclosure的ID |–   |
-|slot_id       |硬盘槽位号            |–   |
+| 参数          | 参数说明                 | 取值 |
+| ------------- | ------------------------ | ---- |
+| controller_id | RAID 卡的 ID             | –    |
+| vd_id         | 待设置的虚拟磁盘的 ID    | –    |
+| enclosure_id  | 硬盘所在 Enclosure 的 ID | –    |
+| slot_id       | 硬盘槽位号               | –    |
 
 **使用指南**
 无
 
 **使用实例**
 
-``` bash
+```bash
 # 设置VD0为启动项
 
 domino:~# ./storcli64 /c0/v0 set bootdrive=on
@@ -439,7 +458,8 @@ VD Property   Value Staus  ErrCd ErrMsg
  0 Boot Drive On    Success    0 -
 ----------------------------------------
 ```
-``` bash
+
+```bash
 # 设置slot 7硬盘为启动项
 
 domino:~# ./storcli64 /c0/e252/s7 set bootdrive=on
@@ -455,7 +475,7 @@ BootDrive PD:252_7
 -------------------
 ```
 
-``` bash
+```bash
 # 列出bootdrive信息
 storcli /cx show bootdrive
 
@@ -465,7 +485,8 @@ storcli /cx/vx set bootdrive=<on|off>
 # 指定某盘为bootdrive
 storcli /cx[/ex]/sx set bootdrive=<on|off>
 ```
-``` bash
+
+```bash
 # 检查启动盘
 # storcli64 /c0 show bootdrive
 Controller = 0
@@ -483,31 +504,32 @@ BootDrive VD:0
 ----------------
 ```
 
-
-
 ### sas2ircu
-#### 设置指定RAID组作为第一启动项
+
+#### 设置指定 RAID 组作为第一启动项
 
 **命令功能**
-设置指定RAID组作为第一启动项。
+设置指定 RAID 组作为第一启动项。
 
 **命令格式**
-``` bash
+
+```bash
 sas2ircu `controller_id` bootir `volume_id`
 ```
 
 **参数说明**
 
-|参数            |参数说明                    |取值|
-|---------------|---------------------------|---|
-|controller_id  |RAID卡的ID                  |–  |
-|volume_id      |待设置为第一启动项的RAID组ID   |–  |
+| 参数          | 参数说明                        | 取值 |
+| ------------- | ------------------------------- | ---- |
+| controller_id | RAID 卡的 ID                    | –    |
+| volume_id     | 待设置为第一启动项的 RAID 组 ID | –    |
 
 **使用指南**
 无
 
 **使用实例**
-``` bash
+
+```bash
 # 设置指定RAID组作为第一启动项。
 domino:~# ./sas2ircu 0 bootir 322
 Avago Technologies SAS2 IR Configuration Utility.
@@ -518,30 +540,31 @@ SAS2IRCU: Command bootir Completed Successfully.
 SAS2IRCU: Utility Completed Successfully.
 ```
 
-
 #### 设置指定单盘作为第一启动项
 
 **命令功能**
 设置指定单盘作为第一启动项。
 
 **命令格式**
-``` bash
+
+```bash
 sas2ircu `controller_id` bootencl `enclosure_id`:`slot_id`
 ```
 
 **参数说明**
 
-|参数            |参数说明              |取值|
-|---------------|---------------------|----|
-|controller_id  |RAID卡的ID            |–  |
-|enclosure_id   |硬盘所在Enclosure的ID  |–  |
-|slot_id        |硬盘槽位号             |–  |
+| 参数          | 参数说明                 | 取值 |
+| ------------- | ------------------------ | ---- |
+| controller_id | RAID 卡的 ID             | –    |
+| enclosure_id  | 硬盘所在 Enclosure 的 ID | –    |
+| slot_id       | 硬盘槽位号               | –    |
 
 **使用指南**
-	无
+无
 
 **使用实例**
-``` bash
+
+```bash
 # 设置指定单盘作为第一启动项
 domino:~# ./sas2ircu 0 bootencl 1:4
 Avago Technologies SAS2 IR Configuration Utility.
@@ -552,15 +575,17 @@ SAS2IRCU: Command BOOTENCL Completed Successfully.
 SAS2IRCU: Utility Completed Successfully.
 ```
 
-
 ### sas3ircu
-用法同sas2ircu
+
+用法同 sas2ircu
 
 # 问题
-辨别RAID厂商、型号是个大问题，当前采用严格匹配方式，未适配的型号统统忽略了，比如说下面这些：
+
+辨别 RAID 厂商、型号是个大问题，当前采用严格匹配方式，未适配的型号统统忽略了，比如说下面这些：
 58:00.0 RAID bus controller: LSI Logic / Symbios Logic Device 0014 (rev 01)
 
 # 参考
+
 StorCLI Reference Manual - Broadcom
 Disk Controller parameters -- Best practice
 未完待续...

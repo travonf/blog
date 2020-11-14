@@ -3,7 +3,7 @@ title: 理解 GNU screen 的 hardstatus strings
 date: 2010-01-01 08:00:00
 updated: 2010-01-01 08:00:00
 tags: ["linux", "screen"]
-categories: "linux"
+categories: ["OS", "Linux"]
 ---
 
 原文链接： http://www.kilobitspersecond.com/2014/02/10/understanding-gnu-screens-hardstatus-strings/
