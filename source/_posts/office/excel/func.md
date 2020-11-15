@@ -3,7 +3,7 @@ title: EXCEL函数
 date: 2011-01-01 08:00:00
 updated: 2011-01-01 08:00:00
 tags: "excel"
-categories: "Office"
+categories: ["Office", "Excel"]
 ---
 
 ## `INDEX`函数

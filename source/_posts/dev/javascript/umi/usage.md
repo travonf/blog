@@ -3,7 +3,7 @@ title: umi3.0踩坑记录
 date: 2020/10/01 00:00:00
 updated: 2020/10/01 00:00:00
 tags: "umijs"
-categories: "Develop"
+categories: ["Develop", "Javascript", "Umi"]
 ---
 
 新的东西出来总是要尝尝鲜的，在这里把遇到的一些问题记录下来，方便他人避坑。

@@ -3,7 +3,7 @@ title: mysql常用语句
 date: 2009-07-02 08:00:00
 updated: 2009-07-02 08:00:00
 tags: "mysql"
-categories: "Database"
+categories: ["Database", "MySQL"]
 ---
 
 # 登陆控制台

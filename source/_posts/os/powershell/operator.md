@@ -3,7 +3,7 @@ title: Powershell运算符
 date: 2010-01-01 08:00:00
 updated: 2010-01-01 08:00:00
 tags: "powershell"
-categories: "OS"
+categories: ["OS", "Windows", "Powershell"]
 ---
 
 当我正准备记下学习 Powershell 函数的心得时，突然因为别的事情需要使用计算器。于是我就将就已经打开的 Powershell 控制台完成了计算。这个时间，我突然想起，忘了把 Powersehll 的运算符记录下来。

@@ -3,7 +3,7 @@ title: mysql基础知识扫盲
 date: 2009-07-01 08:00:00
 updated: 2009-07-01 08:00:00
 tags: "mysql"
-categories: "Database"
+categories: ["Database", "MySQL"]
 ---
 
 本篇主要介绍关于mysql的一些非常基础的知识，为后面的sql优化做准备。

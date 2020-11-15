@@ -3,7 +3,7 @@ title: 多人开发必备Git技能
 date: 2014-02-01 08:00:00
 updated: 2014-02-01 08:00:00
 tags: "git"
-categories: "Develop"
+categories: ["Develop", "Git"]
 ---
 
 如果你已经开始工作了，一定对 `Git` 不陌生，开发需要一个团队，版本控制必不可少。如果你还在学习，准备参加工作，那建议你抽空好好学习一下 `Git`。

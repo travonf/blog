@@ -3,7 +3,7 @@ title: JavaScript基础
 date: 2008-09-03 08:00:00
 updated: 2008-09-03 08:00:00
 tags: "javascript"
-categories: "Develop"
+categories: ["Develop", "Javascript"]
 ---
 
 ## JS 基础
