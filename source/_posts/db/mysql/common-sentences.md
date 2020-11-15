@@ -1,7 +1,7 @@
 ---
 title: mysql常用语句
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2009-07-02 08:00:00
+updated: 2009-07-02 08:00:00
 tags: "mysql"
 categories: "Database"
 ---

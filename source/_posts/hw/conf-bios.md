@@ -1,7 +1,7 @@
 ---
 title: 如何通过命令行配置BIOS?
-date: 2018-11-06 20:56:34
-updated: 2018-11-06 20:56:34
+date: 2018-06-01 08:00:00
+updated: 2018-06-01 08:00:00
 tags: "BIOS"
 categories: "Hardware"
 ---

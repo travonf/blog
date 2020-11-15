@@ -1,7 +1,7 @@
 ---
 title: linux下终端的类型(TTY)
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2009-03-01 08:00:00
+updated: 2009-03-01 08:00:00
 tags: "linux"
 categories: "OS"
 ---

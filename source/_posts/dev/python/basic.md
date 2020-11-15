@@ -1,7 +1,7 @@
 ---
 title: Python基础
-date: 2013/02/14 11:11:11
-updated: 2013/02/14 11:11:11
+date: 2007-09-06 08:00:00
+updated: 2007-09-06 08:00:00
 tags: "Python"
 categories: "Develop"
 ---

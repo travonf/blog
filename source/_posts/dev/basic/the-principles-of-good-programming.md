@@ -1,7 +1,7 @@
 ---
 title: The Principles of Good Programming
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2007-09-03 08:00:00
+updated: 2007-09-03 08:00:00
 tags: "dev"
 categories: "Develop"
 ---

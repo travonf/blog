@@ -1,7 +1,7 @@
 ---
 title: TCP/IP协议——ARP详解
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2009-06-01 08:00:00
+updated: 2009-06-01 08:00:00
 tags: "arp"
 categories: "Network"
 ---

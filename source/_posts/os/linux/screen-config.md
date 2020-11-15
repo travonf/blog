@@ -1,7 +1,7 @@
 ---
 title: screen配置
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2009-05-01 08:00:00
+updated: 2009-05-01 08:00:00
 tags: ["linux", "screen"]
 categories: ["OS", "Linux"]
 ---

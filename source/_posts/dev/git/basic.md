@@ -1,7 +1,7 @@
 ---
 title: 多人开发必备Git技能
-date: 2018-12-05 23:15:46
-updated: 2018-12-05 23:15:46
+date: 2014-02-01 08:00:00
+updated: 2014-02-01 08:00:00
 tags: "git"
 categories: "Develop"
 ---

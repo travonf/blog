@@ -1,7 +1,7 @@
 ---
 title: mysql基础知识扫盲
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2009-07-01 08:00:00
+updated: 2009-07-01 08:00:00
 tags: "mysql"
 categories: "Database"
 ---

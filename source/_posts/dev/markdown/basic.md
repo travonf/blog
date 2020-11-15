@@ -1,7 +1,7 @@
 ---
 title: MarkDown使用说明
-date: 2010-01-01 08:00:00
-updated: 2010-01-01 08:00:00
+date: 2008-09-05 08:00:00
+updated: 2008-09-05 08:00:00
 tags: "markdown"
 categories: "Develop"
 ---
