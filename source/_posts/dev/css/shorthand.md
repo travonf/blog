@@ -14,6 +14,8 @@ categories: "Develop"
 `color：#113366` 可以简写为 `color：#136`
 所有用到 16 进制色彩值的地方都可以使用简写，比如`background-color`、`border-color`、`text-shadow`、`box-shadow`等。
 
+<!-- more -->
+
 # 盒子大小
 
 这里主要用于两个属性：`margin`和`padding`，我们以`margin`为例，`padding`与之相同。盒子有上下左右四个方向，每个方向都有个外边距：

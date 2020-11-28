@@ -22,6 +22,8 @@ JavaScript 声明有两种：
 | CommonJS  |           | `module.exports` <br />`exports`                      | `require`                    |
 | ES Module | ECMA      | `export` <br />`export default`                       | `import`                     |
 
+<!-- more -->
+
 ## 特点
 
 ### CommonJs
