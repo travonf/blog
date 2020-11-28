@@ -133,11 +133,6 @@
     <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
@@ -146,16 +141,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
   </ul>
@@ -201,22 +186,21 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/blog/archives/">
-        
-          <span class="site-state-item-count">26</span>
+          <a href="/blog/archives">
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -302,6 +286,14 @@
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
         </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/Umi/" itemprop="url" rel="index"><span itemprop="name">Umi</span></a>
+        </span>
     </span>
 
   
@@ -348,7 +340,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/git/basic.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/javascript/redux/basic.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -362,7 +354,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/dev/git/basic.html" class="post-title-link" itemprop="url">多人开发必备Git技能</a>
+            <a href="/blog/dev/javascript/redux/basic.html" class="post-title-link" itemprop="url">Redux架构</a>
         </h2>
 
         <div class="post-meta-container">
@@ -373,7 +365,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-12-05 23:15:46" itemprop="dateCreated datePublished" datetime="2018-12-05T23:15:46+08:00">2018-12-05</time>
+      <time title="创建时间：2019-10-02 08:00:00" itemprop="dateCreated datePublished" datetime="2019-10-02T08:00:00+08:00">2019-10-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -382,6 +374,14 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/Redux/" itemprop="url" rel="index"><span itemprop="name">Redux</span></a>
         </span>
     </span>
 
@@ -395,21 +395,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>如果你已经开始工作了，一定对 <code>Git</code> 不陌生，开发需要一个团队，版本控制必不可少。如果你还在学习，准备参加工作，那建议你抽空好好学习一下 <code>Git</code>。</p>
-<p><code>Git</code> 是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。在我们的工作中也是必备的技能，还记得第一天入职主管给我的第一个任务就是让我学习 <code>Git</code>，熟悉 <code>Git</code> 的整个开发流程。<code>Git</code> 具有以下特点：</p>
-<p>速度快、灵活</p>
-<p>自由选择工作方式</p>
-<p>保持工作独立</p>
-<p>适合分布式开发，强调个体</p>
-<p>下面是我总结的几大块 <code>git</code> 命令，与君共享。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/dev/git/basic.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><img src="/blog/images/redux.png" alt="redux"></p>
+
       
     </div>
 
@@ -435,7 +422,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/javascript/basic.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/javascript/react/react-developer-roadmap.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -449,7 +436,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/dev/javascript/basic.html" class="post-title-link" itemprop="url">JavaScript基础</a>
+            <a href="/blog/dev/javascript/react/react-developer-roadmap.html" class="post-title-link" itemprop="url">React Developer Roadmap</a>
         </h2>
 
         <div class="post-meta-container">
@@ -460,7 +447,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-12-05 23:15:46" itemprop="dateCreated datePublished" datetime="2018-12-05T23:15:46+08:00">2018-12-05</time>
+      <time title="创建时间：2019-10-01 08:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T08:00:00+08:00">2019-10-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -469,6 +456,14 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
         </span>
     </span>
 
@@ -482,8 +477,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>window.innerHeight     表示窗口高度<br>$(document).height()     返回文档高度（当前显示的高度）<br>$(document).scrollTop()     返回滚动条与顶部的距离,在最上部时为0,<br>    在最下部时为:$(document).height()-window.innerHeight</p>
-<p>$(document).scrollTop($(document).height()-window.innerHeight);</p>
+          <p><img src="/blog/images/react-developer-roadmap.png" alt="react-developer-roadmap"></p>
 
       
     </div>
@@ -535,7 +529,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-12-05 23:15:46" itemprop="dateCreated datePublished" datetime="2018-12-05T23:15:46+08:00">2018-12-05</time>
+      <time title="创建时间：2018-06-02 08:00:00" itemprop="dateCreated datePublished" datetime="2018-06-02T08:00:00+08:00">2018-06-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -544,6 +538,10 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Hardware/RAID/" itemprop="url" rel="index"><span itemprop="name">RAID</span></a>
         </span>
     </span>
 
@@ -619,7 +617,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-11-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-11-06T20:56:34+08:00">2018-11-06</time>
+      <time title="创建时间：2018-06-01 08:00:00" itemprop="dateCreated datePublished" datetime="2018-06-01T08:00:00+08:00">2018-06-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -628,6 +626,10 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Hardware/BIOS/" itemprop="url" rel="index"><span itemprop="name">BIOS</span></a>
         </span>
     </span>
 
@@ -700,7 +702,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/sw/nginx.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/git/basic.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -714,7 +716,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/sw/nginx.html" class="post-title-link" itemprop="url">BAT都在用的Nginx到底是啥？</a>
+            <a href="/blog/dev/git/basic.html" class="post-title-link" itemprop="url">多人开发必备Git技能</a>
         </h2>
 
         <div class="post-meta-container">
@@ -725,7 +727,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2013-02-14 11:11:11" itemprop="dateCreated datePublished" datetime="2013-02-14T11:11:11+08:00">2013-02-14</time>
+      <time title="创建时间：2014-02-01 08:00:00" itemprop="dateCreated datePublished" datetime="2014-02-01T08:00:00+08:00">2014-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -733,7 +735,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
         </span>
     </span>
 
@@ -747,10 +753,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>如果你混迹IT圈儿，你可能听说过，或见过Nginx，IT技术人员对她都会有所耳闻，云计算工程师因为要应对负载均衡问题，需要更深入的了解Nginx，而Nginx也是百度、阿里、腾讯等企业IT架构中的常客。今天，笔者就与大家一起来探究一下，Nginx究竟是什么。</p>
+          <p>如果你已经开始工作了，一定对 <code>Git</code> 不陌生，开发需要一个团队，版本控制必不可少。如果你还在学习，准备参加工作，那建议你抽空好好学习一下 <code>Git</code>。</p>
+<p><code>Git</code> 是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。在我们的工作中也是必备的技能，还记得第一天入职主管给我的第一个任务就是让我学习 <code>Git</code>，熟悉 <code>Git</code> 的整个开发流程。<code>Git</code> 具有以下特点：</p>
+<p>速度快、灵活</p>
+<p>自由选择工作方式</p>
+<p>保持工作独立</p>
+<p>适合分布式开发，强调个体</p>
+<p>下面是我总结的几大块 <code>git</code> 命令，与君共享。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/sw/nginx.html#more" rel="contents">
+              <a class="btn" href="/blog/dev/git/basic.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -781,7 +793,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/python/basic.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/os/powershell/variable.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -795,7 +807,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/dev/python/basic.html" class="post-title-link" itemprop="url">Python基础</a>
+            <a href="/blog/os/powershell/variable.html" class="post-title-link" itemprop="url">Powershell变量</a>
         </h2>
 
         <div class="post-meta-container">
@@ -806,7 +818,202 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2013-02-14 11:11:11" itemprop="dateCreated datePublished" datetime="2013-02-14T11:11:11+08:00">2013-02-14</time>
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Windows/Powershell/" itemprop="url" rel="index"><span itemprop="name">Powershell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Powershell-定义变量"><a href="#Powershell-定义变量" class="headerlink" title="Powershell 定义变量"></a>Powershell 定义变量</h1><h2 id="查看正在使用的变量"><a href="#查看正在使用的变量" class="headerlink" title="查看正在使用的变量"></a>查看正在使用的变量</h2><p>Powershell 将变量的相关信息的记录存放在名为<code>variable:</code>的驱动中。<br>如果要查看所有定义的变量，可以直接遍历<code>variable:</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">ls</span> variable:</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/os/powershell/variable.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/os/powershell/operator.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/os/powershell/operator.html" class="post-title-link" itemprop="url">Powershell运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/OS/Windows/Powershell/" itemprop="url" rel="index"><span itemprop="name">Powershell</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>当我正准备记下学习 Powershell 函数的心得时，突然因为别的事情需要使用计算器。于是我就将就已经打开的 Powershell 控制台完成了计算。这个时间，我突然想起，忘了把 Powersehll 的运算符记录下来。</p>
+<h2 id="Powersehll-有哪些运算符"><a href="#Powersehll-有哪些运算符" class="headerlink" title="Powersehll 有哪些运算符"></a>Powersehll 有哪些运算符</h2><p>Powershell 有哪些运行符？当然 Google 有答案，也许 Baidu 也有答案。不过我决定还是先问 Powershell 试试。所以我尝试了这么一条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS F:\&gt; help about_operator </span><br></pre></td></tr></table></figure>
+
+<p>嘿，蒙对了，这里果然有 Powershell 运算符的详细介绍。<br>Powershell 支持运算符主要有这么几种类型：</p>
+<ul>
+<li>算术运算符：用于进行数值计算</li>
+<li>赋值运算符：给变量赋值，或者计算后赋值</li>
+<li>比较运算符：条件运算符的其中一类，用于比较值或对象的大小</li>
+<li>逻辑运算符：条件运算符的另一类，用于连接多个条件表达式</li>
+<li>重定向运算符：用于重定向的运算符，详情参考<code>about_redirection</code></li>
+<li>拆分/联接运算符：字符串运算符的一类，用于对字符串进行拆分和联接</li>
+<li>类型运算符：判断或更改对象的类型</li>
+<li>一元运算符：就是<code>++</code>和<code>--</code>啦</li>
+<li>特殊运算符：其它比较特殊的运算符</li>
+</ul>
+<p>虽然 Powershell 的帮助文档里已经对运算符进行了很详细的分类，但是为便于理解不同类型的运算，我还是对它进行了重新分类。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/os/powershell/operator.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/markdown/basic.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
+      <meta itemprop="name" content="travonf">
+      <meta itemprop="description" content="To be, or not to be, that is the question">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/dev/markdown/basic.html" class="post-title-link" itemprop="url">MarkDown使用说明</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2008-09-05 08:00:00" itemprop="dateCreated datePublished" datetime="2008-09-05T08:00:00+08:00">2008-09-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -828,16 +1035,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="第一个Python-程序"><a href="#第一个Python-程序" class="headerlink" title="第一个Python 程序"></a>第一个Python 程序</h2><h3 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&#x27;Hello, world&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span>(<span class="string">&#x27;input your name&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&quot;%d * %d = %d&quot;</span> % (<span class="number">1024</span>, <span class="number">768</span>, <span class="number">1024</span> * <span class="number">768</span>))</span><br></pre></td></tr></table></figure>
+          <h1 id="基本技巧"><a href="#基本技巧" class="headerlink" title="基本技巧"></a>基本技巧</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>如果你只想高亮语句中的某个函数名或关键字，可以使用 `function_name()` 实现</p>
+<p>通常编辑器根据代码片段适配合适的高亮方法，但你也可以用 ``` 包裹一段代码，并指定一种语言</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></code></pre>
+<blockquote>
+<p>支持的语言：<br>actionscript, apache, bash,<br>clojure, cmake, coffeescript, cpp, cs, css,<br>d, delphi, django, erlang, go,<br>haskell, html, http, ini, java, javascript, json,<br>lisp, lua, markdown, matlab, nginx, objectivec,<br>perl, php, python, r, ruby, scala, smalltalk, sql,<br>tex, vbscript, xml  </p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/dev/python/basic.html#more" rel="contents">
+              <a class="btn" href="/blog/dev/markdown/basic.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -868,7 +1074,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/net/arp.html">
+    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/dev/javascript/debounce-and-throttle.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/uploads/avatar.jpg">
@@ -882,7 +1088,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/net/arp.html" class="post-title-link" itemprop="url">TCP/IP协议——ARP详解</a>
+            <a href="/blog/dev/javascript/debounce-and-throttle.html" class="post-title-link" itemprop="url">防抖和节流</a>
         </h2>
 
         <div class="post-meta-container">
@@ -893,7 +1099,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
+      <time title="创建时间：2008-09-03 09:00:00" itemprop="dateCreated datePublished" datetime="2008-09-03T09:00:00+08:00">2008-09-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -901,7 +1107,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a>
+          <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
         </span>
     </span>
 
@@ -915,178 +1121,96 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>本文主要讲述了ARP的作用、ARP分组格式、ARP高速缓存、免费ARP和代理ARP。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/net/arp.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <table>
+<colgroup>
+<col width="10%">
+<col width="45%">
+<col width="45%">
+</colgroup>
+<thead>
+<tr>
+<td></td>
+<td>防抖 debounce</td>
+<td>节流 throttle</td>
+</tr>
+</thead>
 
-    
-    
-    
+<tbody>
+<tr>
+<td align="center">概念</td>
+<td>任务频繁触发的情况下<strong>间隔时间</strong>超过<strong>指定值</strong>的时候才会执行<br />时间间隔不定, 连续不断的触发, 比如校验用户输入<br />在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则<strong>重新计时</strong></td>
+<td>任务频繁触发的情况下<strong>指定间隔</strong>内只会执行一次任务<br />时间周期固定<br />规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。</td>
+</tr>
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+<tr>
+<td align="center">理解</td>
+<td>函数防抖就是法师发技能的时候要读条，技能读条没完再按技能就会重新读条。<br />必须等读条完毕才能发出技能,否则重新计时, 这个很关键.</td>
+<td>函数节流就是fps游戏的射速，就算一直按着鼠标射击，也只会在规定射速内射出子弹。<br /></td>
+</tr>
 
+<tr>
+<td align="center">场景</td>
+<td valign="top">
+<ol>
+<li>search搜索联想，用户在不断输入值时，用防抖来节约请求资源。</li>
+<li>window触发resize的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖来让其只触发一次</li>
+</ol>
 
+<p><img src="/blog/images/debounce1.png" alt="debounce1"></p>
+<p>前缘（或者“immediate”）<br><img src="/blog/images/debounce2.png" alt="debounce2"></p>
+</td>
+<td valign="top">
+<ol>
+<li>鼠标不断点击触发，mousedown(单位时间内只触发一次)</li>
+<li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断</li>
+</ol>
 
+<p><code>|-1-|-3-|-2-|-4-|-2-|-4-|-3-|-0-|-1-|-2-|-3-|-4-|-0-|-1-|</code><br>如上所示:每个时间周期内都可能会有多次任务触发,但是每次只会执行一个,这就是节流,那么如何实现呢?</p>
+</td>
+</tr>
 
-    
+<tr>
+<td align="center">原理</td>
+<td valign="top">
+<ol>
+<li>通过闭包保存setTimeout返回值, </li>
+<li>当用户持续输入时, clearTimeout(清理延时任务), </li>
+<li>设置新的延时任务</li>
+<li>这样可以保证用户持续输入时每次重置延时任务, 等用户停止输入才会开始执行函数</td></li>
+</ol>
+<td valign="top">
+<ol>
+<li>通过闭包保存一个标记, 在函数开头判断标记是否可用, 可用执行,否则返回.</li>
+<li>外部函数定期执行, 完毕标记重置</li>
+</ol>
+</td>
+</tr>
 
+<tr>
+<td align="center">实现</td>
+<td>
 
-<div class="post-block">
-  
-  
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, interval = <span class="number">300</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timerID = <span class="literal">null</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timerID) <span class="built_in">clearTimeout</span>(timerID);</span><br><span class="line"></span><br><span class="line">    timerID = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>.arguments);</span><br><span class="line">    &#125;, interval);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> run;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/net/switch.html">
+</td>
+<td>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
-      <meta itemprop="name" content="travonf">
-      <meta itemprop="description" content="To be, or not to be, that is the question">
-    </span>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, interval = <span class="number">300</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> running = <span class="literal">false</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (running) <span class="keyword">return</span>;</span><br><span class="line">    running = <span class="literal">true</span>;</span><br><span class="line">    timerID = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">      running = <span class="literal">false</span>;</span><br><span class="line">    &#125;, interval);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> run;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/net/switch.html" class="post-title-link" itemprop="url">走进交换机“层”的世界</a>
-        </h2>
+</td>
+</tr>
+</tbody>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
+<tfoot>
+<tr>
+<td align="center">总结</td>
+<td>函数防抖和函数节流都是防止某一时间频繁触发，但是这两兄弟之间的原理却不一样。</td>
+<td>函数防抖是某一段时间内只执行一次，而函数节流是间隔时间执行。</td>
+</tr>
+</tfoot>
 
-      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a>
-        </span>
-    </span>
+</table>
 
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>无论你是否从事网络工作，你一定听过网络接入层、汇聚层、核心层，二层交换、三层交换、四层交换，这些“层”说的到底是什么？今天带您走进交换机“层”的世界。</p>
-<p>首先，我们先说说这交换机为什么分这么多层，各层的交换机到底有什么区别。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/net/switch.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://travonf.github.io/blog/read/conversationally-speaking.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/uploads/avatar.jpg">
-      <meta itemprop="name" content="travonf">
-      <meta itemprop="description" content="To be, or not to be, that is the question">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/read/conversationally-speaking.html" class="post-title-link" itemprop="url">谈话的力量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2010-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2010-01-01T08:00:00+08:00">2010-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Read/" itemprop="url" rel="index"><span itemprop="name">Read</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="学会提问题"><a href="#学会提问题" class="headerlink" title="学会提问题"></a>学会提问题</h2><p>1 封闭式 选择题 唯一答案<br>2 开放式 问答题 思维扩散</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/read/conversationally-speaking.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1107,7 +1231,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

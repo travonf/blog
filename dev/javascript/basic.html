@@ -23,18 +23,20 @@
     var CONFIG = {"hostname":"travonf.github.io","root":"/blog/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="window.innerHeight     表示窗口高度$(document).height()     返回文档高度（当前显示的高度）$(document).scrollTop()     返回滚动条与顶部的距离,在最上部时为0,    在最下部时为:$(document).height()-window.innerHeight $(document).scrollTop($(document">
+  <meta name="description" content="JS 基础   JS 实现  &lt;script&gt; 和 &lt;&#x2F;script&gt; 之间的代码行包含了 JavaScript HTML 的 &lt;script&gt; 标签用于把 JavaScript 插入 HTML 页面当中    JS 放置 head部分 &lt;head&gt;&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;....">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript基础">
 <meta property="og:url" content="https://travonf.github.io/blog/dev/javascript/basic.html">
 <meta property="og:site_name" content="Hello World">
-<meta property="og:description" content="window.innerHeight     表示窗口高度$(document).height()     返回文档高度（当前显示的高度）$(document).scrollTop()     返回滚动条与顶部的距离,在最上部时为0,    在最下部时为:$(document).height()-window.innerHeight $(document).scrollTop($(document">
+<meta property="og:description" content="JS 基础   JS 实现  &lt;script&gt; 和 &lt;&#x2F;script&gt; 之间的代码行包含了 JavaScript HTML 的 &lt;script&gt; 标签用于把 JavaScript 插入 HTML 页面当中    JS 放置 head部分 &lt;head&gt;&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;....">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-12-05T15:15:46.000Z">
-<meta property="article:modified_time" content="2018-12-05T15:15:46.000Z">
+<meta property="og:image" content="https://travonf.github.io/blog/images/javascript1.png">
+<meta property="article:published_time" content="2008-09-03T00:00:00.000Z">
+<meta property="article:modified_time" content="2008-09-03T00:00:00.000Z">
 <meta property="article:author" content="travonf">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://travonf.github.io/blog/images/javascript1.png">
 
 
 <link rel="canonical" href="https://travonf.github.io/blog/dev/javascript/basic.html">
@@ -135,11 +137,6 @@
     <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
@@ -148,16 +145,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/blog/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
   </ul>
@@ -177,7 +164,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -190,6 +177,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">JS 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">JS 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-%E9%AB%98%E7%BA%A7"><span class="nav-number">3.</span> <span class="nav-text">JS 高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C-HTML-%E5%85%83%E7%B4%A0"><span class="nav-number">3.1.</span> <span class="nav-text">操作 HTML 元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-%E6%95%B0%E7%BB%84"><span class="nav-number">3.2.</span> <span class="nav-text">JavaScript 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.3.</span> <span class="nav-text">JavaScript 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text">声明变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.4.1.</span> <span class="nav-text">访问对象的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.2.</span> <span class="nav-text">访问对象的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95"><span class="nav-number">3.5.</span> <span class="nav-text">JavaScript 函数语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="nav-number">3.6.</span> <span class="nav-text">JavaScript 变量的生存期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.7.</span> <span class="nav-text">条件运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BE%AA%E7%8E%AF"><span class="nav-number">3.8.</span> <span class="nav-text">不同类型的循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.1.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -203,22 +191,21 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/blog/archives/">
-        
-          <span class="site-state-item-count">26</span>
+          <a href="/blog/archives">
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -294,7 +281,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-12-05 23:15:46" itemprop="dateCreated datePublished" datetime="2018-12-05T23:15:46+08:00">2018-12-05</time>
+      <time title="创建时间：2008-09-03 08:00:00" itemprop="dateCreated datePublished" datetime="2008-09-03T08:00:00+08:00">2008-09-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,6 +290,10 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/blog/categories/Develop/" itemprop="url" rel="index"><span itemprop="name">Develop</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Develop/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
         </span>
     </span>
 
@@ -316,8 +307,282 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>window.innerHeight     表示窗口高度<br>$(document).height()     返回文档高度（当前显示的高度）<br>$(document).scrollTop()     返回滚动条与顶部的距离,在最上部时为0,<br>    在最下部时为:$(document).height()-window.innerHeight</p>
-<p>$(document).scrollTop($(document).height()-window.innerHeight);</p>
+        <h2 id="JS-基础"><a href="#JS-基础" class="headerlink" title="JS 基础"></a>JS 基础</h2><table>
+<thead>
+<tr>
+<th>JS 实现</th>
+<th></th>
+<th><code>&lt;script&gt;</code> 和 <code>&lt;/script&gt;</code> 之间的代码行包含了 <code>JavaScript</code></th>
+<th><code>HTML</code> 的 <code>&lt;script&gt;</code> 标签用于把 <code>JavaScript</code> 插入 <code>HTML</code> 页面当中</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JS 放置</td>
+<td><code>head</code>部分</td>
+<td><code>&lt;head&gt;&lt;script type=&quot;text/javascript&quot;&gt;....&lt;/script&gt;&lt;/head&gt;</code></td>
+<td>当页面载入时，会执行位于 <code>body</code> 部分的 <code>JavaScript</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>body</code>部分</td>
+<td><code>&lt;body&gt;&lt;script type=&quot;text/javascript&quot;&gt;....&lt;/script&gt;&lt;/body&gt;</code></td>
+<td>当被调用时，位于 <code>head</code> 部分的 <code>JavaScript</code> 才会被执行</td>
+</tr>
+<tr>
+<td></td>
+<td>外部脚本</td>
+<td><code>&lt;head&gt;&lt;script src=&quot;xxx.js&quot;&gt;....&lt;/script&gt;&lt;/head&gt;</code></td>
+<td>引用外部脚本文件</td>
+</tr>
+<tr>
+<td>JS 语句</td>
+<td>分号</td>
+<td><code>;</code></td>
+<td>分号用于分隔 <code>JavaScript</code> 语句</td>
+</tr>
+<tr>
+<td></td>
+<td>代码块</td>
+<td><code>&#123;&#125;</code></td>
+<td><code>JavaScript</code> 是由浏览器执行的语句序列</td>
+</tr>
+<tr>
+<td></td>
+<td>换行</td>
+<td><code>\</code></td>
+<td>您可以在文本字符串中使用反斜杠对代码行进行换行</td>
+</tr>
+<tr>
+<td>JS 注释</td>
+<td>单行注释</td>
+<td><code>//</code></td>
+<td><code>JavaScript</code> 注释可用于增强代码的可读性</td>
+</tr>
+<tr>
+<td></td>
+<td>多行注释</td>
+<td><code>/* */</code></td>
+<td>多行注释以 <code>/*</code> 开始，以 <code>*/</code> 结尾</td>
+</tr>
+<tr>
+<td>JS 变量</td>
+<td>声明变量</td>
+<td><code>var a;</code> <code>var b=10;</code></td>
+<td>变量是用于存储信息的容器： <code>x=5;</code> <code>length=66.10;</code></td>
+</tr>
+<tr>
+<td>JS 运算符</td>
+<td>算数运算符</td>
+<td><code>+ - * / % ++ --</code></td>
+<td>运算符 <code>=</code> 用于赋值, 运算符 <code>+</code> 用于加值</td>
+</tr>
+<tr>
+<td></td>
+<td>赋值运算符</td>
+<td><code>= += -= *= /= %=</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>逻辑运算符</td>
+<td><code>&amp;&amp; || !</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>比较运算符</td>
+<td><code>== === != &gt; &lt; &gt;= &lt;=</code></td>
+<td><code>===</code> 全等（值与类型）</td>
+</tr>
+<tr>
+<td>JS 语句</td>
+<td>条件语句</td>
+<td><code>if ()&#123;&#125;; if ()&#123;&#125; else&#123;&#125;; if ()&#123;&#125; else if&#123;&#125; else&#123;&#125;; switch(n)&#123;case 1:;case 2:;default:;&#125;</code></td>
+<td>条件语句用于基于不同的条件来执行不同的动作 <code>switch</code> 语句用于基于不同的条件来执行不同的动作</td>
+</tr>
+<tr>
+<td></td>
+<td>循环语句</td>
+<td><code>for for/in while do/while</code></td>
+<td>循环可以将代码块执行指定的次数</td>
+</tr>
+<tr>
+<td>JS 函数</td>
+<td>无参数函数</td>
+<td><code>function funcName() &#123; 代码．．． &#125;</code></td>
+<td>函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块</td>
+</tr>
+<tr>
+<td></td>
+<td>有参数函数</td>
+<td><code>function funcName(var1,var2,...,varX) &#123; 代码．．． &#125;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>返回值函数</td>
+<td><code>function prod(a,b)&#123; x=a*b; return x &#125;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>JS 事件</td>
+<td></td>
+<td></td>
+<td>事件是可以被 <code>JavaScript</code> 侦测到的行为</td>
+</tr>
+<tr>
+<td>JS 异常</td>
+<td>捕获异常</td>
+<td><code>try&#123; //在此运行代码&#125;catch(err)&#123; //在此处理错误&#125;</code></td>
+<td><code>try...catch</code> 的作用是测试代码中的错误</td>
+</tr>
+<tr>
+<td></td>
+<td>抛出异常</td>
+<td><code>throw(exception)</code></td>
+<td><code>throw</code> 声明的作用是创建 <code>exception</code>（异常或错误）</td>
+</tr>
+<tr>
+<td>JS 字符</td>
+<td>特殊字符</td>
+<td><code>\&#39; \&quot; \&amp; \\ \n \r \t \b \f</code></td>
+<td>在 <code>JavaScript</code> 中使用反斜杠来向文本字符串添加特殊字符</td>
+</tr>
+<tr>
+<td>JS 方针</td>
+<td>注意事项</td>
+<td></td>
+<td><code>JavaScript</code> 对大小写敏感 <code>JavaScript</code> 会忽略多余的空格 在文本字符串内部使用反斜杠对代码进行折行</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h2 id="JS-对象"><a href="#JS-对象" class="headerlink" title="JS 对象"></a>JS 对象</h2><table>
+<thead>
+<tr>
+<th>JS 对象</th>
+<th>属性 方法</th>
+<th><code>document.write(txt.length)</code><br /> <code>document.write(str.toUpperCase())</code></th>
+<th>属性指与对象有关的值 方法指对象可以执行的行为（或者可以完成的功能）</th>
+<th>对象只是一种特殊的数据。对象拥有属性和方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>字符串对象<br /> 日期对象<br /> 数组对象<br /> 逻辑对象<br /> 算数对象<br /> 正则对象<br /> ——–<br /> BOM 对象<br /> -<br />-<br />-<br />-<br />-<br /> ——–<br /> DOM 对象<br /></td>
+<td><code>String</code><br /> <code>Date</code><br /> <code>Array</code><br /> <code>Boolean</code><br /> <code>Math</code><br /> <code>RegExp</code><br /> ——–<br /> <code>Window</code><br /> <code>Navigator</code><br /> <code>Screen</code><br /> <code>History</code><br /> <code>Location</code><br /> ——–<br /> <code>Document</code><br /></td>
+<td>字符串对象用于处理已有的字符块<br /> 日期对象用于处理日期和时间<br /> 数组对象的作用是：使用单独的变量名来存储一系列的值<br /> Boolean（逻辑）对象用于将非逻辑值转换为逻辑值（true 或者 false）<br /> Math（算数）对象的作用是：执行常见的算数任务<br /> RegExp 对象用于规定在文本中检索的内容<br /> ——–<br /> -<br />-<br />-<br />-<br /> ——–<br /> 除了内置的 JavaScript 对象以外，你还可以使用 JavaScript 访问并处理所有的 HTML DOM 对象<br /></td>
+<td></td>
+</tr>
+<tr>
+<td>创建对象</td>
+<td>属性<br /> 方法</td>
+<td>对象名.属性名<br /> 对象名.方法名</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建对象的方法</td>
+<td>1. 创建对象的实例<br /> -<br />-<br /> 2. 创建对象的模板<br /></td>
+<td>定义对象<br /> 添加属性<br /> 添加方法<br /> 定义对象结构<br /> 分配内容<br /> 添加方法<br /></td>
+<td><code>personObj=new Object()</code><br /> <code>personObj.name=&quot;John&quot;</code><br /> <code>personObj.sleep()</code><br /> <code>function person(name)</code><br /> <code>&#123; this.name=name &#125;</code><br /> <code>myFather=new person(&quot;John&quot;)</code><br /> <code>document.write(myFather.name)</code><br /></td>
+<td>有多种不同的办法来创建对象<br /> 一旦拥有模版，你就可以创建新的实例<br /> 方法只是依附于对象的函数而已<br /></td>
+</tr>
+</tbody></table>
+<h2 id="JS-高级"><a href="#JS-高级" class="headerlink" title="JS 高级"></a>JS 高级</h2><ol>
+<li>JavaScript 的核心 ECMAScript 描述了该语言的语法和基本对象；</li>
+<li>DOM 描述了处理网页内容的方法和接口；</li>
+<li>BOM 描述了与浏览器进行交互的方法和接口。</li>
+</ol>
+<p><img src="/blog/images/javascript1.png" alt="javascript"></p>
+<p>ECMAScript 仅仅是一个描述，定义了脚本语言的所有属性、方法和对象。<br>DOM（文档对象模型）是 HTML 和 XML 的应用程序接口（API）。</p>
+<h3 id="操作-HTML-元素"><a href="#操作-HTML-元素" class="headerlink" title="操作 HTML 元素"></a>操作 HTML 元素</h3><p>如需从 JavaScript 访问某个 HTML 元素，您可以使用 <code>document.getElementById(id)</code> 方法。<br>请使用 “id” 属性来标识 HTML 元素</p>
+<h3 id="JavaScript-数组"><a href="#JavaScript-数组" class="headerlink" title="JavaScript 数组"></a>JavaScript 数组</h3><p>创建数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cars = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">cars[<span class="number">0</span>] = <span class="string">&quot;Audi&quot;</span>;</span><br><span class="line">cars[<span class="number">1</span>] = <span class="string">&quot;BMW&quot;</span>;</span><br><span class="line">cars[<span class="number">2</span>] = <span class="string">&quot;Volvo&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cars = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;Audi&quot;</span>, <span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;Volvo&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cars = [<span class="string">&quot;Audi&quot;</span>, <span class="string">&quot;BMW&quot;</span>, <span class="string">&quot;Volvo&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-对象"><a href="#JavaScript-对象" class="headerlink" title="JavaScript 对象"></a>JavaScript 对象</h3><p>对象由花括号分隔。<br>在括号内部，对象的属性以名称和值对的形式 (name : value) 来定义。<br>属性由逗号分隔：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123; <span class="attr">firstname</span>: <span class="string">&quot;Bill&quot;</span>, <span class="attr">lastname</span>: <span class="string">&quot;Gates&quot;</span>, <span class="attr">id</span>: <span class="number">5566</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以换行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  firstname: <span class="string">&quot;Bill&quot;</span>,</span><br><span class="line">  lastname: <span class="string">&quot;Gates&quot;</span>,</span><br><span class="line">  id: <span class="number">5566</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>对象寻址（引用）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = person.lastname;</span><br><span class="line">name = person[<span class="string">&quot;lastname&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="声明变量类型"><a href="#声明变量类型" class="headerlink" title="声明变量类型"></a>声明变量类型</h3><p>当您声明新变量时，可以使用关键词 “new” 来声明(指定)其类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">String</span>(); <span class="comment">// 声明一个字符串类型变量</span></span><br><span class="line"><span class="keyword">var</span> n = <span class="keyword">new</span> <span class="built_in">Number</span>(); <span class="comment">// 声明一个数字类型变量</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(); <span class="comment">// 声明一个布尔类型变量</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>(); <span class="comment">// 声明一个数组类型变量</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// 声明一个对象类型变量</span></span><br></pre></td></tr></table></figure>
+
+<p>JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象。<br>在 JavaScript 中，对象是拥有属性和方法的数据。<br>个人理解：属性就是一个对象的静态值，方法就是一个对象的行为序列;<br>汽车的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car.name=Fiat</span><br><span class="line">car.model=<span class="number">500</span></span><br><span class="line">car.weight=<span class="number">850</span>kg</span><br><span class="line">car.color=white</span><br></pre></td></tr></table></figure>
+
+<p>汽车的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">car.start();</span><br><span class="line">car.drive();</span><br><span class="line">car.brake();</span><br></pre></td></tr></table></figure>
+
+<h4 id="访问对象的属性"><a href="#访问对象的属性" class="headerlink" title="访问对象的属性"></a>访问对象的属性</h4><p>访问对象属性的语法是：<br><code>objectName.propertyName</code></p>
+<h4 id="访问对象的方法"><a href="#访问对象的方法" class="headerlink" title="访问对象的方法"></a>访问对象的方法</h4><p>您可以通过下面的语法调用方法：<br><code>objectName.methodName()</code></p>
+<p>函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。</p>
+<h3 id="JavaScript-函数语法"><a href="#JavaScript-函数语法" class="headerlink" title="JavaScript 函数语法"></a>JavaScript 函数语法</h3><p>函数就是包裹在花括号中的代码块，前面使用了关键词 function：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 这里是要执行的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当调用该函数时，会执行函数内的代码。<br>通过使用 return 语句就可以实现带有返回值的函数。<br>在使用 return 语句时，函数会停止执行，并返回指定的值。</p>
+<h3 id="JavaScript-变量的生存期"><a href="#JavaScript-变量的生存期" class="headerlink" title="JavaScript 变量的生存期"></a>JavaScript 变量的生存期</h3><p>JavaScript 变量的生命期从它们被声明的时间开始。<br>局部变量会在函数运行以后被删除。<br>全局变量会在页面关闭后被删除。</p>
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><p>JavaScript 还包含了基于某些条件对变量进行赋值的条件运算符。<br>语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variablename = condition ? value1 : value2;</span><br></pre></td></tr></table></figure>
+
+<p>例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greeting = visitor == <span class="string">&quot;PRES&quot;</span> ? <span class="string">&quot;Dear President &quot;</span> : <span class="string">&quot;Dear &quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果变量 visitor 中的值是 “PRES”，则向变量 greeting 赋值 “Dear President “，否则赋值 “Dear”。</p>
+<h3 id="不同类型的循环"><a href="#不同类型的循环" class="headerlink" title="不同类型的循环"></a>不同类型的循环</h3><p>JavaScript 支持不同类型的循环：</p>
+<ul>
+<li><code>for</code> - 循环代码块一定的次数</li>
+<li><code>for/in</code> - 循环遍历对象的属性</li>
+<li><code>while</code> - 当指定的条件为 true 时循环指定的代码块</li>
+<li><code>do/while</code> - 同样当指定的条件为 true 时循环指定的代码块</li>
+</ul>
+<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>简化</th>
+<th>限制</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>引用计数算法</td>
+<td>对象是否不再需要 -&gt; 对象有没有其他对象引用到它</td>
+<td>循环引用</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>标记清除算法</td>
+<td>对象是否不再需要 -&gt; 对象是否可以获得</td>
+<td>那些无法从根对象查询到的对象都将被清除</td>
+<td>这个算法假定设置一个叫做根（root）的对象（在 Javascript 里，根是全局对象）。<br />垃圾回收器将定期从根开始，找所有从根开始引用的对象，然后找这些对象引用的对象……从根开始，<br />垃圾回收器将找到所有可以获得的对象和收集所有不能获得的对象。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.ibm.com/developerworks/web/library/wa-memleak/">http://www.ibm.com/developerworks/web/library/wa-memleak/</a></li>
+<li><a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/magazine/ff728624.aspx">http://msdn.microsoft.com/en-us/magazine/ff728624.aspx</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Mozilla/Performance">https://developer.mozilla.org/en-US/docs/Mozilla/Performance</a></li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.innerHeight; <span class="comment">// 获取窗口高度</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).height(); <span class="comment">// 返回文档高度（当前显示的高度）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).scrollTop(); <span class="comment">// 返回滚动条与顶部的距离,在最上部时为0</span></span><br><span class="line">$(<span class="built_in">document</span>).height() - <span class="built_in">window</span>.innerHeight; <span class="comment">// 在最下部时</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).scrollTop($(<span class="built_in">document</span>).height() - <span class="built_in">window</span>.innerHeight);</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -373,13 +638,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/hw/conf-raid.html" rel="prev" title="如何通过命令行配置RAID?">
-                  <i class="fa fa-chevron-left"></i> 如何通过命令行配置RAID?
+                <a href="/blog/dev/css/shorthand.html" rel="prev" title="CSS属性简写">
+                  <i class="fa fa-chevron-left"></i> CSS属性简写
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/dev/git/basic.html" rel="next" title="多人开发必备Git技能">
-                  多人开发必备Git技能 <i class="fa fa-chevron-right"></i>
+                <a href="/blog/dev/javascript/module.html" rel="next" title="JavaScript Module">
+                  JavaScript Module <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
